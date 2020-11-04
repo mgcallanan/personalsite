@@ -1,0 +1,114 @@
+.image-cropper {
+    position: relative;
+}
+
+.tech-intro {
+    width: 100vw;
+}
+
+.background1 {
+    background: url(../../images/sunset.jpg);
+    position: relative;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.background2 {
+    background: url(../../images/code.jpg);
+    position: relative;
+    background-attachment: fixed;
+    margin-top: -19px;
+}
+
+.layer {
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.yale {
+    color: white /*#67abe6*/ !important;
+    white-space: nowrap;
+}
+
+.oracle {
+    color: white /*#e61e26*/ !important;
+    white-space: nowrap;
+}
+
+.tester {
+    height: 1000px;
+}
+
+
+
+
+@media only screen and (max-width: 500px) { /* for mobile */
+    .background1 {
+        margin-top: 1%;
+    }
+    
+    .image-cropper {
+        height: calc(20vh + 20vw);
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+    }
+
+    .tech-intro {
+        display: block;
+        height: 100vh;
+    }
+    img.headshot {
+        margin:auto;
+        height: 100%;
+    }
+    
+    .bio {
+        padding: 1em;
+    }
+
+    p {
+        text-align: center;
+        font-size: calc(4vw + 2vw);
+    }
+}
+
+@media only screen and (min-width: 500px) { /* for desktop */
+    .background1 {
+        margin-top: -1em;
+    }
+    .tech-intro {
+        height: 100vh;
+    }
+
+    .image-cropper {
+        height: calc(15vh + 15vw);
+        width: 20vw;
+        float: left;
+        margin: 0 2vw;
+    }
+
+    img.headshot {
+        padding-top: 5%;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+
+    .bio {
+        float:right;
+        text-align: left;
+        width: 75vw;
+        height: calc(15vh + 15vw);
+    }
+
+    p {
+        margin: 1vw;
+        font-size: calc(2vw + 0.1vh);
+    }
+    
+}

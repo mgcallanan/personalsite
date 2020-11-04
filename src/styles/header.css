@@ -1,0 +1,148 @@
+.header {
+    display: block;
+    text-align: center;
+    margin-bottom: -15px;
+    top: 0px;
+}
+
+.header #logo {
+    height:100%;
+}
+
+.header .text {
+    box-shadow: 0px;
+    text-decoration: none;
+}
+
+h1 {
+    color:white;
+    text-align: center;
+    padding: 0;
+}
+a:link {
+    box-shadow: 0px;
+    text-decoration: none;
+}
+
+.header h1 {
+    color: white;
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    text-align: center;
+    box-shadow: 0px;
+    text-decoration: none;
+
+    font-size: calc(3vw + 0.85vh);
+    letter-spacing: 0.25em;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+Link {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 500px) { /* for mobile */
+    .overflow_wrapper {
+        overflow-x: hidden !important;
+    }
+    
+    .header {
+        height: calc(10vh + 10vw);
+    }
+
+    .buttons {
+        display: none;
+    }
+
+    .header .text {
+        padding: 0;
+        margin-left: 0.5em;
+    }
+
+    .header .image {
+        height:50%;
+        margin:8px;
+    }
+
+    .header h1 {
+        font-size: calc(3.8vw + 1.5vh);
+        letter-spacing: 0.25em;
+
+    }
+
+}
+
+@media only screen and (min-width: 500px) { /* for desktop */
+    .header {
+        height: calc(7vh + 7vw);
+    }
+
+    .hamburger {
+        display:none;
+    }
+
+    .header .image {
+        height:45%;
+        margin:0px;
+    }
+
+    .header h1 {
+        font-size: calc(3vw + 0.85vh);
+        letter-spacing: 0.25em;
+        margin: 0px;
+    }
+
+
+    .buttons {
+        top: 0;
+        display: flex;
+        top: 0;
+        margin: 1.2% 0px;
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+        justify-content: space-around;
+        position: -webkit-sticky;
+        position: sticky;
+        background: black;
+    }
+    
+    
+    button.navbutton {
+        -moz-transition: all .2s ease-in;
+        -o-transition: all .2s ease-in;
+        -webkit-transition: all .2s ease-in;
+        transition: all .2s ease-in;
+        background: black;
+        color: white;
+        border-color: white;
+        border-width: 0.1em;
+        height:2.4em;
+        width:16vw;
+        font-size: 1.1vw;
+        font-family: acumin-pro-wide, sans-serif;
+        font-weight: 100;
+        font-style: normal;
+        text-align: center;
+        letter-spacing: 0.2em;
+        margin-right: 0.78vw;
+        margin-left: 0.78vw;
+        max-width: 100%;
+    
+    }
+    
+    button.navbutton:hover {
+        background: white;
+        border-color: black;
+        color: black;
+        font-weight:500;
+        letter-spacing:0.21em;
+    }
+}
+
+
