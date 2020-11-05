@@ -1,6 +1,7 @@
 import React from "react"
 
 import Header from "../components/header"
+import Navigation from "../components/navigation"
 import headshot from "../../images/headshot.png"
 import "../styles/home.css"
 
@@ -9,9 +10,12 @@ export default function Home() {
 
   return (
     <React.Fragment>
-      <div>
+      <div className="total_header">
         <Header/>
-      </div>,
+      </div>
+      <div className="navigation">
+        <Navigation/>
+      </div>
       <div className="background1">
         <div className="layer">
           <div className="tech-intro">
@@ -23,7 +27,7 @@ export default function Home() {
             </div>
           </div> 
         </div>
-      </div>,
+      </div>
       <div className="background2">
         <div className="layer">
           <div className="tech-intro">

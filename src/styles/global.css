@@ -4,6 +4,7 @@ html {
 
 body {
     margin: 8px 0px;
+    position: relative;
 }
 
 .overflow_wrapper {

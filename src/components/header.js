@@ -1,15 +1,13 @@
-import React, { Fragment, useEffect, useRef, useState } from "react"
+import React from "react"
 import Title from "../components/title"
-import NavigationButton from "../components/navigationbutton"
-import Hamburger from "../components/hamburger"
 import { Helmet }  from "react-helmet"
 import logo from "../../logo.png"
 import "../styles/header.css"
 
 export default function Header() {
 
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
       <div className="header">
         <Helmet>
           <title>Mary Callanan</title>
@@ -22,18 +20,6 @@ export default function Header() {
           <Title/>
         </div>
       </div>
-      <nav>
-        <div className="buttons">
-          <NavigationButton name="ABOUT ME" pageName="/about"/>
-          <NavigationButton name="RESUME" pageName="/resume"/>
-          <NavigationButton name="PORTFOLIO" pageName="/portfolio"/>
-          <NavigationButton name="PUBLICATIONS" pageName="/publications"/>
-          <NavigationButton name="JUST FOR FUN" pageName="/justforfun"/>
-        </div>
-        <div className="mobile_buttons">
-            <Hamburger/>
-        </div>
-      </nav>
-      </React.Fragment>
-    )
-  }
+    </React.Fragment>
+  )
+}

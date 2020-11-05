@@ -17,7 +17,6 @@
     background: url(../../images/code.jpg);
     position: relative;
     background-attachment: fixed;
-    margin-top: -19px;
 }
 
 .layer {
@@ -49,6 +48,10 @@
     .background1 {
         margin-top: 1%;
     }
+
+    .background2 {
+        margin-top: 19px;
+    }
     
     .image-cropper {
         height: calc(20vh + 20vw);
@@ -78,8 +81,9 @@
 }
 
 @media only screen and (min-width: 500px) { /* for desktop */
+
     .background1 {
-        margin-top: -1em;
+       /*: -1em;*/
     }
     .tech-intro {
         height: 100vh;

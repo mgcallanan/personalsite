@@ -1,7 +1,7 @@
 .header {
     display: block;
     text-align: center;
-    margin-bottom: -15px;
+    /*margin-bottom: -15px;*/
     top: 0px;
 }
 
@@ -35,12 +35,6 @@ a:link {
 
     font-size: calc(3vw + 0.85vh);
     letter-spacing: 0.25em;
-}
-
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
 }
 
 Link {
@@ -80,7 +74,23 @@ Link {
 
 @media only screen and (min-width: 500px) { /* for desktop */
     .header {
-        height: calc(7vh + 7vw);
+        height: calc(5vh + 5vw);
+    }
+
+    .total_header {
+        background: black;
+        height: calc(5vh + 5vw) + 2.4%;
+        margin: 5px 0px;
+    }
+
+    .navigation {
+        top:0;
+        position:sticky;
+        position:-webkit-sticky;
+        z-index: 10;
+        background: black;
+        padding-top: 1%;
+        padding-bottom: 1%;
     }
 
     .hamburger {
@@ -102,18 +112,18 @@ Link {
     .buttons {
         top: 0;
         display: flex;
-        top: 0;
-        margin: 1.2% 0px;
         padding-left: 0.5vw;
         padding-right: 0.5vw;
-        justify-content: space-around;
+        justify-content: space-between;
         position: -webkit-sticky;
         position: sticky;
         background: black;
+        z-index: 6;
     }
     
     
     button.navbutton {
+        display: inline-block;
         -moz-transition: all .2s ease-in;
         -o-transition: all .2s ease-in;
         -webkit-transition: all .2s ease-in;
@@ -133,6 +143,11 @@ Link {
         margin-right: 0.78vw;
         margin-left: 0.78vw;
         max-width: 100%;
+        top:0;
+        position: sticky;
+        position: -webkit-sticky;
+        z-index: 5;
+        margin-top: -0.01%;
     
     }
     
