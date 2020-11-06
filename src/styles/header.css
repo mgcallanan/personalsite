@@ -19,7 +19,7 @@ h1 {
     text-align: center;
     padding: 0;
 }
-a:link {
+.header a:link {
     box-shadow: 0px;
     text-decoration: none;
 }
@@ -37,17 +37,21 @@ a:link {
     letter-spacing: 0.25em;
 }
 
-Link {
+/*Link {
     text-decoration: none;
-}
+}*/
 
-@media only screen and (max-width: 500px) { /* for mobile */
+@media only screen and (max-width: 600px) { /* for mobile */
     .overflow_wrapper {
         overflow-x: hidden !important;
     }
+
+    .total_header {
+        height: calc(10vh + 10vw);
+    }
     
     .header {
-        height: calc(10vh + 10vw);
+        height: 100%;
     }
 
     .buttons {
@@ -65,22 +69,22 @@ Link {
     }
 
     .header h1 {
-        font-size: calc(3.8vw + 1.5vh);
+        font-size: calc(calc(10vh + 10vw) * 0.23);
         letter-spacing: 0.25em;
 
     }
 
 }
 
-@media only screen and (min-width: 500px) { /* for desktop */
+@media only screen and (min-width: 600px) { /* for desktop */
     .header {
-        height: calc(5vh + 5vw);
+        height: 100%;
     }
 
     .total_header {
         background: black;
-        height: calc(5vh + 5vw) + 2.4%;
-        margin: 5px 0px;
+        height: calc(7vh + 2vw);
+        margin: 1% 0px;
     }
 
     .navigation {
@@ -103,7 +107,7 @@ Link {
     }
 
     .header h1 {
-        font-size: calc(3vw + 0.85vh);
+        font-size: calc(calc(7vh + 2vw) * .5);
         letter-spacing: 0.25em;
         margin: 0px;
     }

@@ -1,14 +1,22 @@
 import React from "react"
 
 import Header from "../components/header"
+import Navigation from "../components/navigation"
 
-export default function Home() {
+export default function JustForFun() {
 
   return (
-    <div>
-      <Header/>
-      <h1>Just for Fun</h1>
-    </div>
+    <React.Fragment>
+      <div className="total_header">
+        <Header/>
+      </div>
+      <div className="navigation">
+        <Navigation/>
+      </div>
+      <div className="content">
+        <p>Just for Fun</p>
+      </div>
+    </React.Fragment>
+
   )
 }
-

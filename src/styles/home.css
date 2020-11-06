@@ -3,7 +3,8 @@
 }
 
 .tech-intro {
-    width: 100vw;
+    position: relative;
+    width: 100%;
 }
 
 .background1 {
@@ -11,12 +12,18 @@
     position: relative;
     background-attachment: fixed;
     background-size: cover;
+
+    width: 100vw;
+    height: 100vh;
 }
 
 .background2 {
     background: url(../../images/code.jpg);
     position: relative;
     background-attachment: fixed;
+
+    height: 100vh;
+    width: 100vw;
 }
 
 .layer {
@@ -41,16 +48,45 @@
     height: 1000px;
 }
 
+p a:link {
+    color: white;
+    text-decoration: underline;
+}
+
+p a:visited {
+    color: #969696;
+    text-decoration: underline;
+}
+
+p a:hover {
+    color: #9f70b5;
+    transition: color 1s;
+}
+
+
+.subheader h2 {
+    color: white;
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    text-align: center;
+    text-decoration: underline;
+
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+}
 
 
 
-@media only screen and (max-width: 500px) { /* for mobile */
+
+@media only screen and (max-width: 600px) { /* for mobile */
     .background1 {
         margin-top: 1%;
     }
 
     .background2 {
-        margin-top: 19px;
+        margin-top: -20px;
     }
     
     .image-cropper {
@@ -59,6 +95,7 @@
         display: flex;
         justify-content: center;
         padding-top: 30px;
+
     }
 
     .tech-intro {
@@ -76,43 +113,116 @@
 
     p {
         text-align: center;
-        font-size: calc(4vw + 2vw);
+        font-size: calc(1.6vw + 1vh);
+    }
+
+    .subheader {
+        height: 20vh;
+        width: 100vw;
+    }
+
+    .subheader h2 {
+        font-size: calc(8vw + 0.85vh);
+    }
+
+    .contactme {
+        height: 25vh;
+        width: 100vw;
+    }
+
+    .contactme img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 60%;
+    }
+
+    .contactme p {
+        letter-spacing: 0.25em;
+        font-size: calc(2vw + 1vh);
     }
 }
 
-@media only screen and (min-width: 500px) { /* for desktop */
+@media only screen and (min-width: 600px) { /* for desktop */
 
-    .background1 {
-       /*: -1em;*/
+    .background2 {
+       margin-top: -6em;
+       height: 100vh + 6em;
     }
     .tech-intro {
         height: 100vh;
     }
 
     .image-cropper {
-        height: calc(15vh + 15vw);
-        width: 20vw;
+        height: 30vw;
+        width: 30vw;
         float: left;
         margin: 0 2vw;
+        position: absolute;
+        top: 50%;
+        transform: translate(0%, -50%);
+
     }
 
     img.headshot {
-        padding-top: 5%;
         margin: 0 auto;
-        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 50%;
+        transform:translate(-50%, 0%);
     }
 
 
     .bio {
         float:right;
         text-align: left;
-        width: 75vw;
-        height: calc(15vh + 15vw);
+        width: 60vw;
+        height: 100%;
+
+        position: absolute;
+        top: 50%;
+        transform: translate(60%, -50%);
     }
 
-    p {
+    .bio p {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
         margin: 1vw;
-        font-size: calc(2vw + 0.1vh);
+        font-size: calc(1.25vw + 1vh);
+    }
+
+    .subheader {
+        margin-top: calc(2.4em + 5%);
+        height: 20vh;
+        width: 100vw;
+        text-align: center;
+    }
+
+    .subheader h2 {
+        font-size: calc(8vw + 0.85vh);
+    }
+
+    .contactme {
+        height: 20vh;
+        width: 100vw;
+        text-align: center;
+        margin: 5vh auto;
+
+    }
+
+    .contactme img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 60%;
+    }
+
+    .contactme p {
+        letter-spacing: 0.25em;
+        font-size: calc(2vw + 1vh);
+
+        margin: 3px auto;
     }
     
 }
