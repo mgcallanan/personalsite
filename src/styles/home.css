@@ -44,10 +44,6 @@
     white-space: nowrap;
 }
 
-.tester {
-    height: 1000px;
-}
-
 p a:link {
     color: white;
     text-decoration: underline;
