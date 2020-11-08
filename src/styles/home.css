@@ -5,6 +5,8 @@
 .tech-intro {
     position: relative;
     width: 100%;
+    height: 100%;
+    flex-grow: 1;
 }
 
 .page-content {
@@ -18,7 +20,7 @@
     position: relative;
     background-attachment: fixed;
     background-size: cover;
-    display: block;
+    display: flex;
     font-size: 0;
     flex-grow: 1;
 
@@ -30,7 +32,7 @@
     background: url(../../images/code.jpg);
     position: relative;
     background-attachment: fixed;
-    display: block;
+    display: flex;
     font-size: 0;
     flex-grow: 1;
 
@@ -42,7 +44,7 @@
 .layer {
     background-color: rgba(0, 0, 0, 0.8);
     position: relative;
-    display: block;
+    display: flex;
     width: 100%;
     height: 100%;
     flex-grow: 1;
@@ -73,6 +75,19 @@ p a:hover {
     transition: color 1s;
 }
 
+.subheader {
+    height: 20vh;
+    width: 100vw;
+    margin: 4vh auto;
+}
+
+
+.contactme {
+    height: 20vh;
+    width: 100vw;
+    margin: 4vh auto;
+}
+
 
 .subheader h2 {
     color: white;
@@ -90,13 +105,6 @@ p a:hover {
 
 
 @media only screen and (max-width: 600px) { /* for mobile */
-    .background1 {
-        /*margin-top: 1%;*/
-    }
-
-    .background2 {
-        /*margin-top: -20px;*/
-    }
     
     .image-cropper {
         height: calc(20vh + 20vw);
@@ -125,18 +133,9 @@ p a:hover {
         font-size: calc(1.6vw + 1vh);
     }
 
-    .subheader {
-        height: 20vh;
-        width: 100vw;
-    }
 
     .subheader h2 {
         font-size: calc(8vw + 0.85vh);
-    }
-
-    .contactme {
-        height: 25vh;
-        width: 100vw;
     }
 
     .contactme img {
@@ -159,6 +158,9 @@ p a:hover {
     }
     .tech-intro {
         height: 100vh;
+        /*display: flex;
+        flex-direction: column;*/
+
     }
 
     .image-cropper {
@@ -201,9 +203,6 @@ p a:hover {
     }
 
     .subheader {
-        margin-top: calc(2.4em + 5%);
-        height: 20vh;
-        width: 100vw;
         text-align: center;
     }
 
@@ -212,10 +211,7 @@ p a:hover {
     }
 
     .contactme {
-        height: 20vh;
-        width: 100vw;
         text-align: center;
-        margin: 5vh auto;
 
     }
 
@@ -228,9 +224,8 @@ p a:hover {
 
     .contactme p {
         letter-spacing: 0.25em;
-        font-size: calc(2vw + 1vh);
+        font-size: calc(22.5vh * 0.25);
 
-        margin: 3px auto;
     }
     
 }

@@ -53,15 +53,15 @@ export default function Home() {
                 <h2>CONTACT ME</h2>
               </div>
               <div className="contactme">
-                <img src={envelope}></img>
+                <img src={envelope} alt="Envelope"></img>
                 <p>mary.callanan \at\ yale.edu</p>
               </div>
               <div className="contactme">
-                <img src={githublogo}></img>
+                <img src={githublogo} alt="GitHub Logo"></img>
                 <p><a href="https://github.com/mgcallanan">@mgcallanan</a></p>
               </div>
               <div className="contactme">
-                <img src={linkedinlogo}></img>
+                <img src={linkedinlogo} alt="LinkedIn Logo"></img>
                 <p><a href="https://www.linkedin.com/in/mary-callanan-203694172/">Mary Callanan</a></p>
               </div>
             </div>

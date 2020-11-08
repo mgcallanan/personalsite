@@ -7,6 +7,11 @@ body {
     position: relative;
 }
 
+h2, p {
+    margin: 0px;
+    padding: 0px;
+}
+
 .overflow_wrapper {
     position: relative;
 }
@@ -40,17 +45,3 @@ p {
     transition: translate(-50%, -50%);*/
 }
 
-.non-header p a:link {
-    color: white;
-    text-decoration: underline;
-}
-
-.non-header p a:visited {
-    color: #969696;
-    text-decoration: underline;
-}
-
-.non-header p a:hover {
-    color: #9f70b5;
-    transition: color 1s;
-}
