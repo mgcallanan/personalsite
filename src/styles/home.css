@@ -7,11 +7,20 @@
     width: 100%;
 }
 
+.page-content {
+    font-size: 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .background1 {
     background: url(../../images/sunset.jpg);
     position: relative;
     background-attachment: fixed;
     background-size: cover;
+    display: block;
+    font-size: 0;
+    flex-grow: 1;
 
     width: 100vw;
     height: 100vh;
@@ -21,6 +30,10 @@
     background: url(../../images/code.jpg);
     position: relative;
     background-attachment: fixed;
+    display: block;
+    font-size: 0;
+    flex-grow: 1;
+
 
     height: 100vh;
     width: 100vw;
@@ -28,10 +41,11 @@
 
 .layer {
     background-color: rgba(0, 0, 0, 0.8);
-    top: 0;
-    left: 0;
+    position: relative;
+    display: block;
     width: 100%;
     height: 100%;
+    flex-grow: 1;
 }
 
 .yale {
@@ -66,7 +80,6 @@ p a:hover {
     font-weight: 100;
     font-style: normal;
     text-align: center;
-    text-decoration: underline;
 
     position: relative;
     top: 50%;
@@ -78,11 +91,11 @@ p a:hover {
 
 @media only screen and (max-width: 600px) { /* for mobile */
     .background1 {
-        margin-top: 1%;
+        /*margin-top: 1%;*/
     }
 
     .background2 {
-        margin-top: -20px;
+        /*margin-top: -20px;*/
     }
     
     .image-cropper {
@@ -142,8 +155,7 @@ p a:hover {
 @media only screen and (min-width: 600px) { /* for desktop */
 
     .background2 {
-       margin-top: -6em;
-       height: 100vh + 6em;
+       height: 100vh;
     }
     .tech-intro {
         height: 100vh;
