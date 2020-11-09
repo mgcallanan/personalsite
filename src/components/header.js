@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Title from "../components/title"
 import { Helmet }  from "react-helmet"
-import logo from "../../logo.png"
+import logo from "../images/logo.png"
 import "../styles/header.css"
 
 export default function Header() {

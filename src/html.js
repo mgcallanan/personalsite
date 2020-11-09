@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import favicon from "./images/favicon.ico"
 
 export default function HTML(props) {
   return (
@@ -11,7 +12,8 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        <link rel="stylesheet" href="https://use.typekit.net/dkh6gwj.css"></link>
+        <link rel="stylesheet" href="https://use.typekit.net/dkh6gwj.css"/>
+        <link rel="icon" type="image/png" href={favicon}/>
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>

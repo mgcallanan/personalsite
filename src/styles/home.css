@@ -16,7 +16,7 @@
 }
 
 .background1 {
-    background: url(../../images/sunset.jpg);
+    background: url(../images/sunset.jpg);
     position: relative;
     background-attachment: fixed;
     background-size: cover;
@@ -29,7 +29,7 @@
 }
 
 .background2 {
-    background: url(../../images/code.jpg);
+    background: url(../images/code.jpg);
     position: relative;
     background-attachment: fixed;
     display: flex;
@@ -88,6 +88,15 @@ p a:hover {
     margin: 4vh auto;
 }
 
+.contactme img{
+    margin-bottom: 1.75vh;
+}
+
+.contactme p {
+    text-align: center;
+    /*margin: 1vh auto;*/
+}
+
 
 .subheader h2 {
     color: white;
@@ -111,7 +120,7 @@ p a:hover {
         width: 100vw;
         display: flex;
         justify-content: center;
-        padding-top: 30px;
+        padding: 2vh 0px;
 
     }
 
@@ -125,12 +134,13 @@ p a:hover {
     }
     
     .bio {
-        padding: 1em;
+        padding: 4em;
     }
 
-    p {
+    .background1 p {
         text-align: center;
-        font-size: calc(1.6vw + 1vh);
+        font-size: calc(1.7vw + 1vh);
+        padding: 2em;
     }
 
 
@@ -147,7 +157,7 @@ p a:hover {
 
     .contactme p {
         letter-spacing: 0.25em;
-        font-size: calc(2vw + 1vh);
+        font-size: calc(20vh * 0.11);
     }
 }
 
@@ -224,7 +234,7 @@ p a:hover {
 
     .contactme p {
         letter-spacing: 0.25em;
-        font-size: calc(22.5vh * 0.25);
+        font-size: calc(20vh * 0.25);
 
     }
     

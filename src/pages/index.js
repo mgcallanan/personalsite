@@ -2,10 +2,10 @@ import React from "react"
 
 import Header from "../components/header"
 import Navigation from "../components/navigation"
-import headshot from "../../images/headshot.png"
-import envelope from "../../images/envelope.png"
-import githublogo from "../../images/githublogo.png"
-import linkedinlogo from "../../images/linkedinlogo.png"
+import headshot from "../images/headshot.png"
+import envelope from "../images/envelope.png"
+import githublogo from "../images/githublogo.png"
+import linkedinlogo from "../images/linkedinlogo.png"
 import "../styles/home.css"
 
 
