@@ -35,7 +35,7 @@ export default function Home() {
                   I'm very passionate about striving for gender and racial equality in tech. I was first introduced to coding through an after school Girls Who Code club. Now, I help in leading a student-run organization on campus that teaches students from local middle schools computer science.  
                   <br></br>
                   <br></br>
-                  I have extensive experience building applications using Java and C, but I am using my gap year to learn more about frontend languages (hence, the creation of this made-from-scratch website!).
+                  I have extensive experience building applications using Java and C, but I am using my gap year to learn more about front-end languages (hence, the creation of this made-from-scratch website!).
                   <br></br>
                   <br></br>
                   In my free time, I enjoy captaining my residential college's intramural teams (who are three-time champions of <a className="non-header" href="https://intramurals.yale.edu/">Yale's Tyng Cup</a>) and running a <a href="https://www.instagram.com/milkwaukee/">dairy-themed Instagram</a> based in my hometown of Milwaukee, WI.

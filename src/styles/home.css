@@ -76,16 +76,16 @@ p a:hover {
 }
 
 .subheader {
-    height: 20vh;
+    height: 12vh;
     width: 100vw;
-    margin: 4vh auto;
+    margin: 5vh auto;
 }
 
 
 .contactme {
-    height: 20vh;
+    height: 21vh;
     width: 100vw;
-    margin: 4vh auto;
+    margin: 5vh auto;
 }
 
 .contactme img{
@@ -120,7 +120,7 @@ p a:hover {
         width: 100vw;
         display: flex;
         justify-content: center;
-        padding: 2vh 0px;
+        padding: 3vh 0px;
 
     }
 
@@ -133,14 +133,11 @@ p a:hover {
         height: 100%;
     }
     
-    .bio {
-        padding: 4em;
-    }
 
     .background1 p {
         text-align: center;
         font-size: calc(1.7vw + 1vh);
-        padding: 2em;
+        padding: 0px 2em;
     }
 
 
@@ -234,7 +231,7 @@ p a:hover {
 
     .contactme p {
         letter-spacing: 0.25em;
-        font-size: calc(20vh * 0.25);
+        font-size: calc(1.25vh + 2vw);
 
     }
     

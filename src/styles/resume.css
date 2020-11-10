@@ -1,0 +1,54 @@
+
+
+.page-content {
+    color: white;
+    font-size: 16px;
+}
+
+.section {
+    width: 100%;
+    display: block;
+}
+
+.section-header {
+    background: white;
+    width: 97vw;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    display: flex;
+    height: 2.5em;
+    align-items: center;
+    text-align: left;
+}
+
+.section-header h2 {
+    color: black;
+    margin-left: 1em;
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.section-content {
+    height: 40vh;
+}
+
+.experience-main {
+    height: 100%;
+}
+
+.experience-title h3{
+    color: white;
+    font-family: acumin-pro-wide, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.experience-logo {
+    height: 50%;
+}
+
+.experience-logo img {
+    height: 100%;
+}
+

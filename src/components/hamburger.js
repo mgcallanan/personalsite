@@ -4,20 +4,20 @@ import { Link } from "gatsby"
 
 const MenuIcon = styled.button`
     position: fixed;
-    top: 2rem;
-    right: 2rem;
+    top: 1.5rem;
+    right: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     background: transparent;
     border: none;
     cursor: pointer;
     z-index: 5;
 
     div {
-        width: 1.5rem;
+        width: 2rem;
         height: 0.2rem;
         background: white;
         border-radius: 5px;
@@ -49,7 +49,7 @@ const MenuLinks = styled.nav `
     text-align: center;
     height: 100vh;
     width: 100%;
-    background: #d7d7d7;
+    background: #636363;
     position: fixed;
     top: 0;
     right: 0;
