@@ -8,7 +8,6 @@ export default function Navigation() {
   return (
     <React.Fragment>
         <div className="buttons">
-            <NavigationButton name="ABOUT ME" pageName="/about"/>
             <NavigationButton name="RESUME" pageName="/resume"/>
             <NavigationButton name="PORTFOLIO" pageName="/portfolio"/>
             <NavigationButton name="PUBLICATIONS" pageName="/publications"/>
