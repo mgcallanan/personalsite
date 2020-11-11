@@ -31,11 +31,15 @@
     letter-spacing: 0.15em;
 }
 
+
+
 .section-content {
     height: 20vh;
     width: 97vw;
     margin-left: 1.5vw;
     margin-right: 1.5vw;
+    margin-top: 1em;
+    margin-bottom: 1em;
 
     display: flex;
     flex-direction: row;
@@ -110,6 +114,20 @@
 
     font-size: calc(1.4vw + 0.75vh);
     letter-spacing: 0.07em;
+}
+
+.experience-description .job ul{
+    font-size: calc(1vw + 0.75vh);
+}
+
+.experience-description h3 {
+    color: white;
+    font-family: acumin-pro-condensed, sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: calc(1.75vw + 1.1vh);
+
+    margin-left: -2rem;
 }
 
 .experience-description ul li span .italic {

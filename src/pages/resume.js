@@ -6,6 +6,7 @@ import "../styles/resume.css"
 
 import yalelogo from "../images/yalelogo.png"
 import dshalogo from "../images/dshalogo.png"
+import oraclelogo from "../images/oraclelogo.png"
 
 
 export default function Resume() {
@@ -33,7 +34,7 @@ export default function Resume() {
                   <h3>Yale University</h3>
                 </div>
                 <div className="experience-date">
-                  <p>August 2022 - Present</p>
+                  <p>August 2018 - Present</p>
                 </div>
               </div>
             </div>
@@ -63,6 +64,61 @@ export default function Resume() {
                 <li>Graduated in top 10% of the graduating class</li>
                 <li><span style={{fontStyle: "italic"}}>Awards:</span> National Honor Society, AP Scholar with Distinction, Salvatorian Sisters' Service Award</li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <div className="section">
+          <div className="section-header">
+            <h2>WORK EXPERIENCE</h2>
+          </div>
+          <div className="section-content">
+            <div className="experience-main">
+              <div className="experience-logo">
+                <img src={oraclelogo} alt="Oracle Logo"/>
+              </div>
+              <div className="experience-main-text">
+                <div className="experience-title">
+                  <h3>Oracle Cloud Infrastructure</h3>
+                </div>
+                <div className="experience-date">
+                  <p>May 2020 - August 2020</p>
+                </div>
+              </div>
+            </div>
+            <div className="experience-description">
+              <div className="job">
+                <h3>Software Engineer Intern</h3>
+                <ul>
+                  <li>Worked as the only intern on the Network Monitoring team on a project that measured internet performance on a global scale</li>
+                  <li>Used Oracle Cloud tools, like Oracle Functions, to track and manage alarms that were firing</li>
+                  <li>Implemented code that used Java JSON libraries and the OCI SDK to convert alarm messages</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="section-content">
+            <div className="experience-main">
+              <div className="experience-logo">
+                <img src={oraclelogo} alt="Oracle Logo"/>
+              </div>
+              <div className="experience-main-text">
+                <div className="experience-title">
+                  <h3>Oracle Cloud Infrastructure</h3>
+                </div>
+                <div className="experience-date">
+                  <p>May 2020 - August 2020</p>
+                </div>
+              </div>
+            </div>
+            <div className="experience-description">
+              <div className="job">
+                <h3>Software Engineer Intern</h3>
+                <ul>
+                  <li>Worked as the only intern on the Network Monitoring team on a project that measured internet performance on a global scale</li>
+                  <li>Used Oracle Cloud tools, like Oracle Functions, to track and manage alarms that were firing</li>
+                  <li>Implemented code that used Java JSON libraries and the OCI SDK to convert alarm messages</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
