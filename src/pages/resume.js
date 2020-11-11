@@ -7,6 +7,8 @@ import "../styles/resume.css"
 import yalelogo from "../images/yalelogo.png"
 import dshalogo from "../images/dshalogo.png"
 import oraclelogo from "../images/oraclelogo.png"
+import stclogo from "../images/stclogo.png"
+import codehavenlogo from "../images/codehavenlogo.png"
 
 
 export default function Resume() {
@@ -99,24 +101,54 @@ export default function Resume() {
           <div className="section-content">
             <div className="experience-main">
               <div className="experience-logo">
-                <img src={oraclelogo} alt="Oracle Logo"/>
+                <img src={stclogo} alt="Student Technology Collaborative Logo"/>
               </div>
               <div className="experience-main-text">
                 <div className="experience-title">
-                  <h3>Oracle Cloud Infrastructure</h3>
+                  <h3>Student Technology Collaborative</h3>
                 </div>
                 <div className="experience-date">
-                  <p>May 2020 - August 2020</p>
+                  <p>October 2018 - Present</p>
                 </div>
               </div>
             </div>
             <div className="experience-description">
               <div className="job">
-                <h3>Software Engineer Intern</h3>
+                <h3>CT Coordinator; Cluster Technician (CT) <span style={{fontWeight:200}}>(2018-2019)</span></h3>
                 <ul>
                   <li>Worked as the only intern on the Network Monitoring team on a project that measured internet performance on a global scale</li>
                   <li>Used Oracle Cloud tools, like Oracle Functions, to track and manage alarms that were firing</li>
                   <li>Implemented code that used Java JSON libraries and the OCI SDK to convert alarm messages</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="section">
+          <div className="section-header">
+            <h2>VOLUNTEER EXPERIENCE</h2>
+          </div>
+          <div className="section-content">
+            <div className="experience-main">
+              <div className="experience-logo">
+                <img src={codehavenlogo} alt="Code Haven Logo"/>
+              </div>
+              <div className="experience-main-text">
+                <div className="experience-title">
+                  <h3>Code Haven</h3>
+                </div>
+                <div className="experience-date">
+                  <p>September 2018 - Present</p>
+                </div>
+              </div>
+            </div>
+            <div className="experience-description">
+              <div className="job">
+                <h3>Board Member, Classroom Mentor</h3>
+                <ul>
+                  <li>Conduct weekly hour-long computer science classes at New Haven middle schools, reaching over 200 students</li>
+                  <li>Promote Code Haven’s mission of providing inclusive access to computer science in middle schools</li>
+                  <li>Host annual events to train area teachers on computer science principles and to showcase students’ final projects</li>
                 </ul>
               </div>
             </div>
