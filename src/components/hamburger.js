@@ -98,11 +98,6 @@ export default function Hamburger() {
             <MenuLinks nav={nav} className="hamburger_links">
                 <ul>
                     <li>
-                        <Link to="/about/">
-                            <p>ABOUT ME</p>
-                        </Link>
-                    </li>
-                    <li>
                         <Link to="/resume/">
                             <p>RESUME</p>
                         </Link>
