@@ -42,7 +42,7 @@ export default function Resume() {
             </div>
             <div className="experience-description">
               <ul>
-                <li><span>Bacheler's of Science, Computer Science</span></li>
+                <li><span>Bachelor of Science, Computer Science</span></li>
                 <li><span style={{fontStyle: "italic"}}>Relevant Classes:</span> Data Structures and Programming, Systems Programming & Computer Organization</li>
               </ul>
             </div>
@@ -114,11 +114,11 @@ export default function Resume() {
             </div>
             <div className="experience-description">
               <div className="job">
-                <h3>CT Coordinator; Cluster Technician (CT) <span style={{fontWeight:200}}>(2018-2019)</span></h3>
+                <h3>Cluster Technician Coordinator</h3>
                 <ul>
-                  <li>Worked as the only intern on the Network Monitoring team on a project that measured internet performance on a global scale</li>
-                  <li>Used Oracle Cloud tools, like Oracle Functions, to track and manage alarms that were firing</li>
-                  <li>Implemented code that used Java JSON libraries and the OCI SDK to convert alarm messages</li>
+                  <li>Communicate with technicians, coordinators, and management to ensure proper cross-campus coverage</li>
+                  <li>Work with the operations staff to repair lab equipment, resolve issues with software, and deploy new computers</li>
+                  <li>Interact regularly with clients to troubleshoot issues and order materials</li>
                 </ul>
               </div>
             </div>

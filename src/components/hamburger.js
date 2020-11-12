@@ -19,7 +19,7 @@ const MenuIcon = styled.button`
     div {
         width: 2rem;
         height: 0.2rem;
-        background: white;
+        background: #bfbfbf;
         border-radius: 5px;
         transform-origin: 1px;
         position: relative;
@@ -61,7 +61,6 @@ const MenuLinks = styled.nav `
         list-style-type: none;
         vertical-align: center;
         horizontal-align: center;
-        padding-right: 40px;
     }
 
     li {
