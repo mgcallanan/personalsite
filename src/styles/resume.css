@@ -190,6 +190,10 @@
         flex-direction: row;
     }
 
+    .education {
+        height: 17vh;
+    }
+
     .experience-main {
         height: 100%;
         flex-direction: row;
@@ -202,6 +206,11 @@
 
     .experience-logo img {
         width: 90%;
+    }
+
+    .education .experience-logo img {
+        height: 75%;
+        width: auto;
     }
 
     .experience-main-text {
@@ -228,13 +237,10 @@
         flex: 1.5;
     }
 
-    .experience-description ul{
-        font-size: calc(2vw + 0.75vh);
-        letter-spacing: 0.07em;
-    }
 
-    .experience-description .job ul{
+    .experience-description ul{
         font-size: calc(0.8vw + 0.75vh);
+        letter-spacing: 0.07em;
     }
 
     .experience-description h3 {
