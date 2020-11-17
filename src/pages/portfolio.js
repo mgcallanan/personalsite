@@ -2,6 +2,8 @@ import React from "react"
 
 import Header from "../components/header"
 import Navigation from "../components/navigation"
+import Circles from "../components/circle"
+
 
 export default function Portfolio() {
 
@@ -15,6 +17,7 @@ export default function Portfolio() {
       </div>
       <div className="content">
         <p>Portfolio</p>
+        <Circles/>
       </div>
     </React.Fragment>
 
