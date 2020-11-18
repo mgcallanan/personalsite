@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Gender in Movies</title>
+        <script type="text/javascript" src="../utils/d3.js"></script>
+        <style type="text/css">
+
+            .line {
+                fill: none;
+                stroke: teal;
+                stroke-width: 0.5;
+            }
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+             //Width and height
+            var w = 700;
+            var h = 600;
+            var barH = 300;
+            var padding = 50;
+            var maxR = 150;
+            var minR = 100;
+            var barPadding = 1;
+
+            
+            var dataset, xScale, yScale, line, thetaScale, radScale, numYears, len, numFem, numMal, actordata, directordata, producerdata, writerdata, musicdata;  
+
+
+            //All data found on https://github.com/taubergm/HollywoodGenderData
+
+            //Function for converting CSV values from strings to Dates and numbers
+            var rowActorConverter = function(d) {
+                return {
+                    year: parseInt(d.year),
+                    name: d.name,
+                    country: d.country,
+                    budget: parseInt(d.budget),
+                    gross: parseInt(d.gross),
+                    runtime: parseInt(d.runtime),
+                    starring: d.starring,
+                    language: d.language,
+                    //released: new Date(d.released),
+                    released: parseInt(d.released),
+                    gender: d.gender
+ 
+                };
+            }
+
+            var rowDirectorConverter = function(d) {
+                return {
+                    year: parseInt(d.year),
+                    name: d.name,
+                    country: d.country,
+                    budget: parseInt(d.budget),
+                    gross: parseInt(d.gross),
+                    runtime: parseInt(d.runtime),
+                    director: d.director,
+                    language: d.language,
+                    //released: new Date(d.released),
+                    released: parseInt(d.released),
+                    gender: d.gender
+ 
+                };
+            }
+
+            var rowMusicConverter = function(d) {
+                return {
+                    year: parseInt(d.year),
+                    name: d.name,
+                    country: d.country,
+                    budget: parseInt(d.budget),
+                    gross: parseInt(d.gross),
+                    runtime: parseInt(d.runtime),
+                    music: d.music,
+                    language: d.language,
+                    //released: new Date(d.released),
+                    released: parseInt(d.released),
+                    gender: d.gender
+ 
+                };
+            }
+
+            var rowProducerConverter = function(d) {
+                return {
+                    year: parseInt(d.year),
+                    name: d.name,
+                    country: d.country,
+                    budget: parseInt(d.budget),
+                    gross: parseInt(d.gross),
+                    runtime: parseInt(d.runtime),
+                    producer: d.producer,
+                    language: d.language,
+                    //released: new Date(d.released),
+                    released: parseInt(d.released),
+                    gender: d.gender
+ 
+                };
+            }
+
+            var rowWriterConverter = function(d) {
+                return {
+                    year: parseInt(d.year),
+                    name: d.name,
+                    country: d.country,
+                    budget: parseInt(d.budget),
+                    gross: parseInt(d.gross),
+                    runtime: parseInt(d.runtime),
+                    writer: d.writer,
+                    language: d.language,
+                    //released: new Date(d.released),
+                    released: parseInt(d.released),
+                    gender: d.gender
+ 
+                };
+            }
+
+            //Load in data
+            d3.csv("./data/gender_in_actors.csv", rowActorConverter, function(data) {
+                actordata = data;
+
+                d3.csv("./data/all_directors_gender.csv", rowDirectorConverter, function(data) { 
+
+                    directordata = data;
+
+                    var initialYear = d3.min(directordata, function(d) {return d.year; });
+
+                    var finalYear = d3.max(directordata, function(d) {return d.year; });
+
+                    var yearCount = finalYear - initialYear;
+
+                    var directorGenders = [];
+
+                    for (var i = 0; i <= yearCount; i++) {
+                        directorGenders.push([0,0]);
+                    }
+
+
+                    for (var i = 0; i < directordata.length; i++) {
+                        var currentyear = directordata[i].year;
+                        if (directordata[i].gender == "male") {
+                            directorGenders[finalYear - currentyear][0]++;
+                        }
+                        else if (directordata[i].gender == "female") {
+                            directorGenders[finalYear - currentyear][1]++;
+                        }
+                    }
+
+                    //console.log(directorGenders);
+
+                    d3.csv("./data/all_music_gender.csv", rowMusicConverter, function(data) {
+
+                        musicdata = data;
+
+                        var initialMusicYear = d3.min(musicdata, function(d) {return d.year; });
+
+                        var finalMusicYear = d3.max(musicdata, function(d) {return d.year; });
+
+                        var yearMusicCount = finalMusicYear - initialMusicYear;
+
+                        var musicGenders = [];
+
+                        for (var i = 0; i <= yearMusicCount; i++) {
+                            musicGenders.push([0,0]);
+                        }
+
+
+                        for (var i = 0; i < musicdata.length; i++) {
+                            var currentyear = musicdata[i].year;
+                            if (musicdata[i].gender == "male") {
+                                musicGenders[finalYear - currentyear][0]++;
+                            }
+                            else if (musicdata[i].gender == "female") {
+                                musicGenders[finalYear - currentyear][1]++;
+                            }
+                        }
+                        //console.log(musicGenders);
+
+                        d3.csv("./data/all_producers_gender_gold.csv", rowProducerConverter, function(data) {
+
+                            producerdata = data;
+
+
+
+                            var initialProdYear = d3.min(producerdata, function(d) {return d.year; });
+
+                            var finalProdYear = d3.max(producerdata, function(d) {return d.year; });
+
+
+                            var yearProdCount = finalProdYear - initialProdYear;
+
+                            var prodGenders = [];
+
+                            for (var i = 0; i <= yearProdCount; i++) {
+                                prodGenders.push([0,0]);
+                            }
+
+
+                            for (var i = 0; i < producerdata.length; i++) {
+                                var currentyear = producerdata[i].year;
+                                if (currentyear >= initialProdYear && currentyear <= finalProdYear) {
+                                    if (producerdata[i].gender == "male") {
+                                        prodGenders[finalYear - currentyear][0]++;
+                                    }
+                                    else if (producerdata[i].gender == "female") {
+                                        prodGenders[finalYear - currentyear][1]++;
+                                    }
+                                }
+                            }
+                            //console.log(prodGenders);
+
+                            d3.csv("./data/all_writers_gender.csv", rowWriterConverter, function(data) {
+                                writerdata = data;
+
+                                producerdata = data;
+
+                                var initialWritYear = d3.min(writerdata, function(d) {return d.year; });
+
+                                var finalWritYear = d3.max(writerdata, function(d) {return d.year; });
+
+
+                                var yearWritCount = finalWritYear - initialWritYear;
+
+                                var writGenders = [];
+
+                                for (var i = 0; i <= yearWritCount; i++) {
+                                    writGenders.push([0,0]);
+                                }
+
+
+                                for (var i = 0; i < writerdata.length; i++) {
+                                    var currentyear = writerdata[i].year;
+                                    if (currentyear >= initialWritYear && currentyear <= finalWritYear) {
+                                        if (writerdata[i].gender == "male") {
+                                            writGenders[finalYear - currentyear][0]++;
+                                        }
+                                        else if (writerdata[i].gender == "female") {
+                                            writGenders[finalYear - currentyear][1]++;
+                                        }
+                                    }
+                                }
+                                //console.log(writGenders);
+
+                                //for the heatmap
+                                var heatmap = []
+                                for (var i = 0; i <= yearWritCount; i++) {
+                                    heatmap.push([0,0,0,0]);
+                                }
+
+                                var currentTitle, currentGender, writerGender, movieYear;
+                                for (var i = 0; i < directordata.length; i++) {
+
+                                    currentTitle = directordata[i].name;
+                                    currentGender = directordata[i].gender;
+                                    movieYear = directordata[i].year;
+                                    
+
+                                    if (movieYear >= 2000 && movieYear <= 2018) {
+
+                                        for (var j = 0; j < writerdata.length; j++) {
+                                            movieYear = writerdata[j].year;
+                                            writerGender = writerdata[j].gender;
+                                            if (currentTitle == writerdata[j].name) {
+                                                if (currentGender == "male") {
+                                                    if (writerGender == "male") {
+                                                        //console.log(movieYear - 2000);
+                                                        heatmap[movieYear - 2000][0]++; //male director and male writer
+                                                    }
+                                                    else if (writerGender == "female") { 
+                                                        heatmap[movieYear - 2000][1]++;; //male director and female writer 
+                                                    }
+                                                }
+                                                else if (currentGender == "female") {
+                                                    if (writerGender == "male") {
+                                                        heatmap[movieYear - 2000][2]++; //female director and male writer
+                                                    }
+                                                    else if (writerGender == "female") { 
+                                                        heatmap[movieYear - 2000][3]++;; //female director and female writer 
+                                                    }
+                                                }
+                                            }   
+                                        }
+                                    }
+                                }
+
+
+                                var heatScale = d3.scaleLinear()
+                                                    .domain([0, 462])
+                                                    .range([0, 15444]);
+
+                                var heatWidthScale = d3.scaleLinear()
+                                                        .domain([0, 4.66])
+                                                        .range([0, 156.5]);
+
+                                var heatHeightScale = d3.scaleLinear()
+                                                        .domain([0, 2.96])
+                                                        .range([0, 99]);
+
+
+                                numMal = 0;
+                                numFem = 0;
+
+                                var startYear = d3.min(actordata, function(d) {return d.year});
+
+                                var curryear = startYear;
+
+                                var endyear = d3.max(actordata, function(d) {return d.year});
+
+                                var numYears = endyear - startYear;
+                                var n = 0;
+                                var genders = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];
+
+
+
+                                for (var i = 0; i < actordata.length; i++) {
+                                    if (actordata[i].year == curryear) {
+                                        if (actordata[i].gender == "male")
+                                            numMal++;
+                                        else if (actordata[i].gender == "female")
+                                            numFem++;
+                                    }
+                                    else {
+                                        genders[n] = [numMal, numFem];
+                                        n++;
+                                        curryear = actordata[i].year;
+                                        numMal = 1;
+                                        numFem = 1;
+                                    }
+                                    if (i == actordata.length - 1)
+                                        genders[n] = [numMal, numFem];
+                                }
+
+                                var xScale = d3.scaleBand()
+                                            .domain(d3.range(genders.length))
+                                            .rangeRound([0, w / 2])
+                                            .paddingInner(0.3);
+
+                                var yScale = d3.scaleLinear()
+                                                .domain([0, d3.max(genders, function(d) {
+                                                    return d[0];
+                                                })])
+                                                .range([padding, barH - padding]);
+
+                                
+                                //Create SVG element
+                                var svg = d3.select("body")
+                                            .append("svg")
+                                            .attr("width", w)
+                                            .attr("height", h);
+
+
+                                var labelHeight = xScale.bandwidth() * 4/3;
+                                //Create pie chart
+                                var outerRadius = 60;
+                                var innerRadius = 0;
+                                var arc = d3.arc()
+                                            .innerRadius(innerRadius)
+                                            .outerRadius(outerRadius);
+                                
+                                var pie = d3.pie();
+                                
+
+                                var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+                                var leftX = 80;
+                                var rightX = 2 * w / 6;
+                                var upY = 385;
+                                var downY = 525;
+
+                                svg.append("text")
+                                    .text("Number of Leading Actresses and Actors Per Year")
+                                    .attr("x", w / 2)
+                                    .attr("y", 20)
+                                    .attr("font-size", "18px")
+                                    .attr("font-weight", "bold")
+                                    .attr("text-anchor", "middle");
+
+                                svg.append("text")
+                                    .text("Hover over the bars to view more data on cinema gender breakdowns that year.")
+                                    .attr("x", w / 2)
+                                    .attr("y", 33)
+                                    .attr("font-size", "11px")
+                                    .attr("text-anchor", "middle");
+
+
+                                //Create bars
+                                svg.selectAll("rect .bar #male")
+                                   .data(genders)
+                                   .enter()
+                                   .append("rect")
+                                   .attr("class", "bar")
+                                   .attr("id", "male")
+                                   .attr("x", function(d, i) {
+                                        return xScale(i) * 2;
+                                   })
+                                   .attr("y", function(d) {
+                                        return barH - yScale(d[0]);
+                                   })
+                                   .attr("width", xScale.bandwidth())
+                                   .attr("height", function(d) {
+                                        return yScale(d[0]) - labelHeight;
+                                   })
+                                   .attr("fill", function(d) {
+                                        return "rgb(0, 0, " + Math.round(d[0] * 10) + ")";
+                                   })
+                                   .on("mouseover", function(d, i) {
+                                        var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
+                                        var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
+
+
+                                        //Set up groups
+                                        var dirArcs = svg.selectAll("g.directorArc")
+                                                      .data(pie(directorGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "directorArc")
+                                                      .attr("transform", "translate(" + leftX + "," + upY + ")");
+                                        
+                                        //Draw arc paths
+                                        dirArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        dirArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+
+                                        var prodArcs = svg.selectAll("g.prodArc")
+                                                      .data(pie(prodGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "prodArc")
+                                                      .attr("transform", "translate(" + rightX + "," + upY + ")");
+                                        
+                                        //Draw arc paths
+                                        prodArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        prodArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+                                        var writArcs = svg.selectAll("g.writArc")
+                                                      .data(pie(writGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "writArc")
+                                                      .attr("transform", "translate(" + leftX + "," + downY + ")");
+                                        
+                                        //Draw arc paths
+                                        writArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        writArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+                                        var musArcs = svg.selectAll("g.musArc")
+                                                      .data(pie(musicGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "musArc")
+                                                      .attr("transform", "translate(" + rightX + "," + downY + ")");
+                                        
+                                        //Draw arc paths
+                                        musArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        musArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Directors")
+                                            .attr("x", leftX)
+                                            .attr("y", upY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Producers")
+                                            .attr("x", rightX)
+                                            .attr("y", upY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Writers")
+                                            .attr("x", leftX)
+                                            .attr("y", downY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Music")
+                                            .attr("x", rightX)
+                                            .attr("y", downY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+
+                                        //heat map
+                                        var heatStartX = 315;
+                                        var heatStartY = 350;
+                                        var heatHeight = 200;
+                                        var heatWidth = 300;
+
+                                        var heatCenterX = 472;
+                                        var heatCenterY = 449;
+
+                                        var heatMaxArea = 15444;
+                                        var heatMaxWidth = 156.5;
+                                        var heatMaxHeight = 99;
+
+                                        var maxCombo = 462;
+
+                                        var x, y, spaceBtwn;
+
+                                        spaceBtwn = 2;
+
+                                        var index = i;
+
+                                        svg.selectAll("rect.heatmap")
+                                            .data(heatmap[i])
+                                            .enter()
+                                            .append("rect")
+                                            .attr("class", "heatmap")
+                                            .attr("x", function(d, i) {
+                                                if (i == 0 || i == 2) {
+                                                    var heatLength = heatWidthScale(heatMaxWidth * heatmap[index][i] / heatMaxArea);
+                                                    return heatCenterX - heatLength;
+                                                }
+                                                else if (i == 1 || i == 3) {
+                                                    return heatCenterX + spaceBtwn;
+                                                }
+                                                //console.log(i);
+                                                /*if (i % 2 == 0) {
+                                                    return heatStartX;
+                                                }
+                                                else {
+
+                                                    return heatStartX + (heatWidth - spaceBtwn) /2 + 2;
+                                                }*/
+                                            })
+                                            .attr("y", function(d, i) {
+                                                if (i == 0 || i == 1) {
+                                                    var heatHeight = heatHeightScale(heatMaxHeight * heatmap[index][i] / heatMaxArea);
+                                                    return heatCenterY - heatHeight;
+                                                }
+                                                else if (i == 2 || i == 3) {
+                                                    return heatCenterY + spaceBtwn;
+                                                }
+
+                                                /*if (i < 2) {
+                                                    y = heatStartY;
+                                                    return y;
+                                                }
+                                                else {
+                                                    y = heatStartY + (heatHeight - spaceBtwn) / 2 + spaceBtwn;
+                                                    return y;
+                                                }*/
+                                            })
+                                            .attr("height", function(d, i) {
+                                                return heatHeightScale(heatMaxHeight * heatmap[index][i] / heatMaxArea);
+                                            })
+                                            .attr("width", function(d, i) {
+                                                return heatWidthScale(heatMaxWidth * heatmap[index][i] / heatMaxArea);
+                                            })
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0) {
+                                                    return "rgb(0,0," + heatmap[index][i] + ")";
+                                                }
+                                                else if (i == 1) {
+                                                    return "rgb(" + heatmap[index][i] * 12 + ",0,"+ heatmap[index][i] * 12 + ")";
+                                                }
+                                                else if (i == 2) {
+                                                    return "rgb("+ heatmap[index][i] * 12 +",0,"+ heatmap[index][i] * 12 + ")";
+                                                }
+                                                else if (i == 3) {
+                                                    return "rgb("+ heatmap[index][i] * 12 + ",0,0)";
+                                                }
+                                            });
+
+                                        svg.selectAll("text .heat-data")
+                                            .data(heatmap)
+                                            .enter()
+                                            .append("text")
+                                            .attr("class", "heat-data")
+                                            .attr("x", function(d, i) {
+                                                if (i == 0 || i == 2)
+                                                    return heatStartX + heatWidth / 4;
+                                                else if (i == 1 || i == 3)
+                                                    return heatStartX + heatWidth / 2 + heatWidth / 4;
+
+                                            })
+                                            .attr("y", function(d, i) {
+                                                if (i == 0 || i == 1) 
+                                                    return heatStartY + heatHeight / 4;
+                                                else if (i == 2 || i == 3) 
+                                                    return heatStartY + heatHeight / 4 + heatHeight / 2;
+                                            })
+                                            .text(function(d, i) {
+                                                return heatmap[index][i];
+                                            });
+                                        
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + 37)
+                                            .attr("y", 560)
+                                            //.attr("text-anchor", "middle")
+                                            .text("male writers")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + 37 + heatWidth / 2)
+                                            .attr("y", 560)
+                                            //.attr("text-anchor", "middle")
+                                            .text("female writers")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + heatWidth)
+                                            .attr("y", heatStartY + 50)
+                                            //.attr("text-anchor", "middle")
+                                            .text("male directors")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + heatWidth)
+                                            .attr("y", heatStartY + 50 + heatHeight / 2)
+                                            //.attr("text-anchor", "middle")
+                                            .text("female directors")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + heatWidth / 2)
+                                            .attr("y", heatStartY - 15)
+                                            .text("Collaboration Between Men and Women")
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "14px")
+                                            .attr("font-weight", "bold");
+
+                                    })
+                                   .on("mouseout", function() {
+                                        d3.select("#male-tooltip").remove();
+                                        d3.select("#female-tooltip").remove();
+                                        d3.selectAll(".directorArc").remove();
+                                        d3.selectAll(".prodArc").remove();
+                                        d3.selectAll(".writArc").remove();
+                                        d3.selectAll(".musArc").remove();
+                                        d3.selectAll(".pie-title").remove();
+                                        d3.selectAll(".heatmap").remove();
+                                        d3.selectAll(".heat-label").remove();
+                                        d3.selectAll(".heat-data").remove();
+                                   });
+
+                                svg.selectAll("rect .bar #female")
+                                   .data(genders)
+                                   .enter()
+                                   .append("rect")
+                                   .attr("class", "bar")
+                                   .attr("id", "female")
+                                   .attr("x", function(d, i) {
+                                        return xScale.bandwidth() + xScale(i) * 2;
+                                   })
+                                   .attr("y", function(d) {
+                                        return barH - yScale(d[1]);
+                                   })
+                                   .attr("width", xScale.bandwidth())
+                                   .attr("height", function(d) {
+                                        return yScale(d[1]) - labelHeight;
+                                   })
+                                   .attr("fill", function(d) {
+                                        return "rgb(255, 0, 0)";
+                                   })
+                                   .on("mouseover", function(d, i) {
+                                        var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2 - xScale.bandwidth();
+                                        var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
+
+
+                                        //Set up groups
+                                        var dirArcs = svg.selectAll("g.directorArc")
+                                                      .data(pie(directorGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "directorArc")
+                                                      .attr("transform", "translate(" + leftX + "," + upY + ")");
+                                        
+                                        //Draw arc paths
+                                        dirArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        dirArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+
+                                        var prodArcs = svg.selectAll("g.prodArc")
+                                                      .data(pie(prodGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "prodArc")
+                                                      .attr("transform", "translate(" + rightX + "," + upY + ")");
+                                        
+                                        //Draw arc paths
+                                        prodArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        prodArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+                                        var writArcs = svg.selectAll("g.writArc")
+                                                      .data(pie(writGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "writArc")
+                                                      .attr("transform", "translate(" + leftX + "," + downY + ")");
+                                        
+                                        //Draw arc paths
+                                        writArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        writArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+                                        var musArcs = svg.selectAll("g.musArc")
+                                                      .data(pie(musicGenders[i]))
+                                                      .enter()
+                                                      .append("g")
+                                                      .attr("class", "musArc")
+                                                      .attr("transform", "translate(" + rightX + "," + downY + ")");
+                                        
+                                        //Draw arc paths
+                                        musArcs.append("path")
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0)
+                                                    return "blue";
+                                                return "red";
+                                            })
+                                            .attr("d", arc);
+
+                                        musArcs.append("text")
+                                                .attr("transform", function(d) {
+                                                    return "translate(" + arc.centroid(d) + ")";
+                                                })
+                                                .attr("text-anchor", "middle")
+                                                .text(function(d) {
+                                                    return d.value;
+                                                })
+                                                .attr("fill", "white")
+                                                .attr("font-size", "12px");
+
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Directors")
+                                            .attr("x", leftX)
+                                            .attr("y", upY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Producers")
+                                            .attr("x", rightX)
+                                            .attr("y", upY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Writers")
+                                            .attr("x", leftX)
+                                            .attr("y", downY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        svg.append("text")
+                                            .attr("class", "pie-title")
+                                            .text("Gender Divide in Music")
+                                            .attr("x", rightX)
+                                            .attr("y", downY - 65)
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "11px");
+
+                                        //heat map
+                                        var heatStartX = 315;
+                                        var heatStartY = 350;
+                                        var heatHeight = 200;
+                                        var heatWidth = 300;
+
+                                        var heatCenterX = 472;
+                                        var heatCenterY = 449;
+
+                                        var heatMaxArea = 15444;
+                                        var heatMaxWidth = 156.5;
+                                        var heatMaxHeight = 99;
+
+                                        var maxCombo = 462;
+
+                                        var x, y, spaceBtwn;
+
+                                        spaceBtwn = 2;
+
+                                        var index = i;
+
+                                        svg.selectAll("rect.heatmap")
+                                            .data(heatmap[i])
+                                            .enter()
+                                            .append("rect")
+                                            .attr("class", "heatmap")
+                                            .attr("x", function(d, i) {
+                                                if (i == 0 || i == 2) {
+                                                    var heatLength = heatWidthScale(heatMaxWidth * heatmap[index][i] / heatMaxArea);
+                                                    return heatCenterX - heatLength;
+                                                }
+                                                else if (i == 1 || i == 3) {
+                                                    return heatCenterX + spaceBtwn;
+                                                }
+                                                //console.log(i);
+                                                /*if (i % 2 == 0) {
+                                                    return heatStartX;
+                                                }
+                                                else {
+
+                                                    return heatStartX + (heatWidth - spaceBtwn) /2 + 2;
+                                                }*/
+                                            })
+                                            .attr("y", function(d, i) {
+                                                if (i == 0 || i == 1) {
+                                                    var heatHeight = heatHeightScale(heatMaxHeight * heatmap[index][i] / heatMaxArea);
+                                                    return heatCenterY - heatHeight;
+                                                }
+                                                else if (i == 2 || i == 3) {
+                                                    return heatCenterY + spaceBtwn;
+                                                }
+
+                                                /*if (i < 2) {
+                                                    y = heatStartY;
+                                                    return y;
+                                                }
+                                                else {
+                                                    y = heatStartY + (heatHeight - spaceBtwn) / 2 + spaceBtwn;
+                                                    return y;
+                                                }*/
+                                            })
+                                            .attr("height", function(d, i) {
+                                                return heatHeightScale(heatMaxHeight * heatmap[index][i] / heatMaxArea);
+                                            })
+                                            .attr("width", function(d, i) {
+                                                return heatWidthScale(heatMaxWidth * heatmap[index][i] / heatMaxArea);
+                                            })
+                                            .attr("fill", function(d, i) {
+                                                if (i == 0) {
+                                                    return "rgb(0,0," + heatmap[index][i] + ")";
+                                                }
+                                                else if (i == 1) {
+                                                    return "rgb(" + heatmap[index][i] * 12 + ",0,"+ heatmap[index][i] * 12 + ")";
+                                                }
+                                                else if (i == 2) {
+                                                    return "rgb("+ heatmap[index][i] * 12 +",0,"+ heatmap[index][i] * 12 + ")";
+                                                }
+                                                else if (i == 3) {
+                                                    return "rgb("+ heatmap[index][i] * 12 + ",0,0)";
+                                                }
+                                            });
+
+                                        svg.selectAll("text .heat-data")
+                                            .data(heatmap)
+                                            .enter()
+                                            .append("text")
+                                            .attr("class", "heat-data")
+                                            .attr("x", function(d, i) {
+                                                if (i == 0 || i == 2)
+                                                    return heatStartX + heatWidth / 4;
+                                                else if (i == 1 || i == 3)
+                                                    return heatStartX + heatWidth / 2 + heatWidth / 4;
+
+                                            })
+                                            .attr("y", function(d, i) {
+                                                if (i == 0 || i == 1) 
+                                                    return heatStartY + heatHeight / 4;
+                                                else if (i == 2 || i == 3) 
+                                                    return heatStartY + heatHeight / 4 + heatHeight / 2;
+                                            })
+                                            .text(function(d, i) {
+                                                return heatmap[index][i];
+                                            });
+
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + 37)
+                                            .attr("y", 560)
+                                            //.attr("text-anchor", "middle")
+                                            .text("male writers")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + 37 + heatWidth / 2)
+                                            .attr("y", 560)
+                                            //.attr("text-anchor", "middle")
+                                            .text("female writers")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + heatWidth)
+                                            .attr("y", heatStartY + 50)
+                                            //.attr("text-anchor", "middle")
+                                            .text("male directors")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + heatWidth)
+                                            .attr("y", heatStartY + 50 + heatHeight / 2)
+                                            //.attr("text-anchor", "middle")
+                                            .text("female directors")
+                                            .attr("font-size", "12px")
+                                            .attr("font-weight", "bold");
+
+                                        svg.append("text")
+                                            .attr("class", "heat-label")
+                                            .attr("x", heatStartX + heatWidth / 2)
+                                            .attr("y", heatStartY - 15)
+                                            .text("Collaboration Between Men and Women")
+                                            .attr("text-anchor", "middle")
+                                            .attr("font-size", "14px")
+                                            .attr("font-weight", "bold");
+                                    })
+                                   .on("mouseout", function() {
+                                        d3.select("#male-tooltip").remove();
+                                        d3.select("#female-tooltip").remove();
+                                        d3.selectAll(".directorArc").remove();
+                                        d3.selectAll(".prodArc").remove();
+                                        d3.selectAll(".writArc").remove();
+                                        d3.selectAll(".musArc").remove();
+                                        d3.selectAll("text.pie-title").remove();
+                                        d3.selectAll(".heatmap").remove();
+                                        d3.selectAll(".heat-label").remove();
+                                        d3.selectAll(".heat-data").remove();
+                                   });
+
+                                
+                                svg.selectAll("rect .label")
+                                    .data(genders)
+                                    .enter()
+                                    .append("rect")
+                                    .attr("class", "label")
+                                    .attr("x", function(d, i) {
+                                        return xScale(i) * 2;
+                                   })
+                                   .attr("y", function(d) {
+                                        return barH - 20;
+                                   })
+                                   .attr("width", xScale.bandwidth() * 2)
+                                   .attr("height", labelHeight)
+                                   .attr("fill", function(d) {
+                                        return "rgb(0, 0, 0)";
+                                   });
+
+                                svg.selectAll("text .xLabel")
+                                    .data(genders)
+                                    .enter()
+                                    .append("text")
+                                    .attr("class", "xLabel")
+                                    .text(function(d, i) {
+                                        return i + startYear;
+                                    })
+                                    .attr("x", function(d, i) {
+                                        return xScale.bandwidth() + xScale(i) * 2;
+                                    })
+                                    .attr("y", function(d) {
+                                        return barH - 9;
+                                    })
+                                    .attr("width", xScale.bandwidth() * 2)
+                                    .attr("height", labelHeight)
+                                    .attr("text-anchor", "middle")
+                                    .attr("font-size", "11px")
+                                    .attr("font-weight", "bold")
+                                    .attr("fill", function(d) {
+                                        return "rgb(255, 255, 255)";
+                                    });
+
+
+                                svg.selectAll("text.data-labels")
+                                    .data(genders)
+                                    .enter()
+                                    .append("text")
+                                    .attr("class", "data-labels")
+                                    .attr("x", function(d, i) {
+                                        return xScale.bandwidth() + xScale(i) * 2 - 5;
+                                    })
+                                    .attr("y", function(d) {
+                                        return barH - yScale(d[0]) - 3;
+                                    })
+                                    .attr("text-anchor", "middle")
+                                    .text(function(d) {
+                                        return d[0];
+                                    })
+                                    .attr("font-size", "11px")
+                                    .attr("fill", "blue");
+
+                                 svg.selectAll("text.fem-data-labels")
+                                    .data(genders)
+                                    .enter()
+                                    .append("text")
+                                    .attr("class", "fem-data-labels")
+                                    .attr("x", function(d, i) {
+                                        return xScale.bandwidth() + xScale(i) * 2 + 9;
+                                    })
+                                    .attr("y", function(d) {
+                                        return barH - yScale(d[1]) - 3;
+                                    })
+                                    .attr("text-anchor", "middle")
+                                    .text(function(d) {
+                                        return d[1];
+                                    })
+                                    .attr("font-size", "11px")
+                                    .attr("fill", "red");
+
+                            });
+                        });
+                    });
+                });
+            });
+            
+        </script>
+    </body>
+</html>
