@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Gender in Movies</title>
-        <script type="text/javascript" src="../utils/d3.js"></script>
+        <script type="text/javascript" src="./d3.js"></script>
         <style type="text/css">
 
             .line {
@@ -11,7 +11,9 @@
                 stroke: teal;
                 stroke-width: 0.5;
             }
-
+            html {
+                background-color: white;
+            }
         </style>
     </head>
     <body>
@@ -377,7 +379,7 @@
                                     .attr("y", 20)
                                     .attr("font-size", "18px")
                                     .attr("font-weight", "bold")
-                                    .attr("text-anchor", "middle");
+                                    .attr("text-anchor", "middle")
 
                                 svg.append("text")
                                     .text("Hover over the bars to view more data on cinema gender breakdowns that year.")

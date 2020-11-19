@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Looped Bar Graphs</title>
+		<script type="text/javascript" src="../d3.js"></script>
+		<style type="text/css">
+            html {
+                background-color: white;
+            }
+        </style>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+			var w = 600;
+			var h = 300;
+			var barPadding = 8;
+			var padding = 2;
+			var topPadding = 30;
+			var botPadding = 30;
+			var sidePadding = 20;
+			var axisPadding = 35;
+			
+			var dataset, total, spaceBtwn;
+			
+			var svg = d3.select("body")
+						.append("svg")
+						.attr("width", w)
+						.attr("height", h);
+
+			//A Data SVG element
+			var ga = d3.select("svg")
+						.append("g")
+						.attr("id", "a");
+
+			//B Data SVG element
+			var gb = d3.select("svg")
+						.append("g")
+						.attr("id", "b");
+
+			//C Data SVG element
+			var gc = d3.select("svg")
+						.append("g")
+						.attr("id", "c");
+
+
+
+
+			var rowConverter = function(d) {
+				return {
+					Time: parseInt(d.time),
+					A: parseInt(d.a),
+					B: parseInt(d.b),
+					C: parseInt(d.c)
+				};
+			}
+
+			d3.csv("./data/barinput.csv", rowConverter, function(data) {
+				dataset = data;
+
+				var rectWidth = (w - (barPadding * 2 * dataset.length) - sidePadding - (padding * dataset.length)) / (dataset.length * 3);
+
+				var rectWidth1 = rectWidth;
+
+
+				spaceBtwn = rectWidth + padding;
+
+				var xScale = d3.scaleLinear()
+								.domain([0, dataset.length])
+								.range([sidePadding + barPadding, w - barPadding]);
+
+				var yScale = d3.scaleLinear()
+								.domain([0, d3.max(dataset, function(d) {return d.A;})])
+								.range([botPadding, h - topPadding]);
+
+				var yAxisScale = d3.scaleLinear()
+								.domain([0, d3.max(dataset, function(d) {return d.A;})])
+								.range([h - topPadding, botPadding]);
+
+				//Y Axis declaration
+				var yAxis = d3.axisLeft()
+								.scale(yAxisScale)
+								.ticks(10);
+
+
+				//Bars for A data
+				ga.selectAll("rect")
+					.data(dataset)
+					.enter()
+					.append("rect")
+					.attr("x", function(d, i) {
+						return xScale(i) + sidePadding;
+					})
+					.attr("y", function(d) {
+						return h - yScale(d.A);
+					})
+					.attr("width", rectWidth)
+					.attr("height", function(d) {
+						return yScale(d.A) - botPadding;
+					})
+					.attr("fill", "rgb(33, 65, 163)");
+
+				//Bars for B data
+				gb.selectAll("rect")
+					.data(dataset)
+					.enter()
+					.append("rect")
+					.attr("x", function(d, i) {
+						return xScale(i) + spaceBtwn + sidePadding;
+					})
+					.attr("y", function(d) {
+						return h - yScale(d.B);
+					})
+					.attr("width", rectWidth)
+					.attr("height", function(d) {
+						return yScale(d.B) - botPadding;
+					})
+					.attr("fill", "rgb(207, 117, 43)");
+
+				//Bars for C Data
+				gc.selectAll("rect")
+					.data(dataset)
+					.enter()
+					.append("rect")
+					.attr("x", function(d, i) {
+						return xScale(i) + spaceBtwn * 2 + sidePadding;
+					})
+					.attr("y", function(d) {
+						return h - yScale(d.C) ;
+					})
+					.attr("width", rectWidth)
+					.attr("height", function(d) {
+						return yScale(d.C) - botPadding;
+					})
+					.attr("fill", "rgb(120, 119, 119)");
+
+				svg.selectAll("text")
+            	   .data(dataset)
+            	   .enter()
+            	   .append("text")
+            	   .text(function(d) {
+	            	   	return d.Time;
+            	   })
+            	  .attr("x", function(d, i) {
+						return xScale(i) + spaceBtwn + sidePadding;
+					})
+					.attr("y", function(d) {
+						return h - botPadding + 15;
+					})
+            	   .attr("text-anchor", "middle")
+            	   .attr("fill", "black");
+
+
+				//calling y-axis
+				svg.append("g")
+					.attr("class", "axis")
+					.attr("transform", "translate(" + axisPadding + "," + (0 - botPadding + topPadding) + ")")
+					.call(yAxis);
+
+				svg.append("text")
+					.attr("id", "title")
+					.text("Clustered Column")
+					.attr("x", w / 2)
+					.attr("y", (topPadding / 2) + 5)
+					.attr("text-anchor", "middle");
+
+				var keyLength = 10;
+
+				//key reference for A color
+				svg.append("rect")
+					.attr("x", (6 * w / 14))
+					.attr("y", function(d) {
+						return h - botPadding + 20;
+					})
+					.attr("height", keyLength)
+					.attr("width", keyLength)
+					.attr("fill", "rgb(33, 65, 163)");
+
+				svg.append("text")
+					.attr("x", (6 * w / 14) + keyLength + 3)
+					.attr("y", function(d) {
+						return h - botPadding + 30;
+					})
+					.text("a");
+
+				//key reference for B color
+				svg.append("rect")
+					.attr("x", (7 * w / 14))
+					.attr("y", function(d) {
+						return h - botPadding + 20;
+					})
+					.attr("height", keyLength)
+					.attr("width", keyLength)
+					.attr("fill", "rgb(207, 117, 43)");
+
+				svg.append("text")
+					.attr("x", (7 * w / 14) + keyLength + 3)
+					.attr("y", function(d) {
+						return h - botPadding + 30;
+					})
+					.text("b");
+
+
+				//key reference for C color
+				svg.append("rect")
+					.attr("x", (8 * w / 14))
+					.attr("y", function(d) {
+						return h - botPadding + 20;
+					})
+					.attr("height", keyLength)
+					.attr("width", keyLength)
+					.attr("fill", "rgb(120, 119, 119)");
+
+				svg.append("text")
+					.attr("x", (8 * w / 14) + keyLength + 3)
+					.attr("y", function(d) {
+						return h - botPadding + 30;
+					})
+					.text("c");
+
+				function loopdiloop () {
+					d3.select("body")
+						.on("click", function() {
+
+							var stack = []
+							for (var i = 0; i < dataset.length; i++) {
+								stack.push(dataset[i].A + dataset[i].B + dataset[i].C);
+							}
+
+							yAxisScale.domain([0, d3.max(stack)]);
+							yScale.domain([0, d3.max(stack)]);
+
+							padding = 20;
+
+							rectWidth = (w - sidePadding - (padding * stack.length)) / stack.length;
+
+							svg.selectAll("#a rect")
+								.data(dataset)
+								.transition()
+								.duration(1000)
+								.attr("x", function(d, i) {
+									return xScale(i) + spaceBtwn + sidePadding - 10;
+								})
+								.attr("y", function(d) {
+									return h - yScale(d.A);
+								})
+								.attr("height", function(d) {
+									return yScale(d.A) - botPadding;
+								})
+								.attr("width", rectWidth);
+
+							svg.selectAll("#b rect")
+								.data(dataset)
+								.transition()
+								.duration(1000)
+								.attr("x", function(d, i) {
+									return xScale(i) + spaceBtwn + sidePadding - 10;
+								})
+								.attr("y", function(d) {
+									return h - yScale(d.B) - (yScale(d.A) - botPadding);
+								})
+								.attr("height", function(d) {
+									return yScale(d.B) - botPadding;
+								})
+								.attr("width", rectWidth);
+
+							svg.selectAll("#c rect")
+								.data(dataset)
+								.transition()
+								.duration(1000)
+								.attr("x", function(d, i) {
+									return xScale(i) + spaceBtwn + sidePadding - 10;
+								})
+								.attr("y", function(d) {
+									return h - yScale(d.C) - (yScale(d.A) - botPadding) - (yScale(d.B) - botPadding);
+								})
+								.attr("height", function(d) {
+									return yScale(d.C) - botPadding;
+								})
+								.attr("width", rectWidth);
+
+							svg.select("#title")
+								.text("Stacked Column");
+
+
+							svg.select(".axis")
+								.transition()
+								.duration(1000)
+								.call(yAxis);
+
+							//CREATING 100% STACKED COLUMN
+							d3.select("body")
+								.on("click", function() {
+
+									var aPercents = [];
+									var bPercents = [];
+									var cPercents = [];
+
+									for(var i = 0; i < dataset.length; i++) {
+										total = dataset[i].A + dataset[i].B + dataset[i].C;
+										aPercents.push(dataset[i].A / total);
+										bPercents.push(dataset[i].B / total);
+										cPercents.push(dataset[i].C / total);
+									}
+									
+									yScale.domain([0, 1]);
+									yAxisScale.domain([0,1]);
+
+									svg.selectAll("#a rect")
+										.data(dataset)
+										.transition()
+										.duration(1000)
+										.attr("x", function(d, i) {
+											return xScale(i) + spaceBtwn + sidePadding - 10;
+										})
+										.attr("y", function(d, i) {
+											return h - yScale(aPercents[i]);
+										})
+										.attr("height", function(d, i) {
+											return yScale(aPercents[i]) - botPadding;
+										})
+										.attr("width", rectWidth);
+
+									svg.selectAll("#b rect")
+										.data(dataset)
+										.transition()
+										.duration(1000)
+										.attr("x", function(d, i) {
+											return xScale(i) + spaceBtwn + sidePadding - 10;
+										})
+										.attr("y", function(d, i) {
+											return h - yScale(bPercents[i]) - (yScale(aPercents[i]) - botPadding);
+										})
+										.attr("height", function(d, i) {
+											return yScale(bPercents[i]) - botPadding;
+										})
+										.attr("width", rectWidth);
+
+									svg.selectAll("#c rect")
+										.data(dataset)
+										.transition()
+										.duration(1000)
+										.attr("x", function(d, i) {
+											return xScale(i) + spaceBtwn + sidePadding - 10;
+										})
+										.attr("y", function(d, i) {
+											return h - yScale(cPercents[i]) - (yScale(aPercents[i]) - botPadding) - (yScale(bPercents[i]) - botPadding);
+										})
+										.attr("height", function(d, i) {
+											return yScale(cPercents[i]) - botPadding;
+										})
+										.attr("width", rectWidth);
+
+									svg.select("#title")
+										.text("100% Stacked Column");
+
+
+
+									var formatPercentage = d3.format(".0%");
+
+									yAxis = d3.axisLeft()
+												.scale(yAxisScale)
+												.tickFormat(formatPercentage)
+												.ticks(10);
+
+									svg.select(".axis")
+										.transition()
+										.duration(1000)
+										.call(yAxis);
+
+									//for looping
+
+									d3.select("body")
+										.on("click", function() {
+											
+											yScale.domain([0,  d3.max(dataset, function(d) {return d.A;})]);
+											yAxisScale.domain([0,d3.max(dataset, function(d) {return d.A;})]);
+
+											svg.selectAll("#a rect")
+												.data(dataset)
+												.transition()
+												.duration(1000)
+												.attr("x", function(d, i) {
+													return xScale(i) + sidePadding;
+												})
+												.attr("y", function(d) {
+													return h - yScale(d.A);
+												})
+												.attr("width", rectWidth1)
+												.attr("height", function(d) {
+													return yScale(d.A) - botPadding;
+												});
+
+											svg.selectAll("#b rect")
+												.data(dataset)
+												.transition()
+												.duration(1000)
+												.attr("x", function(d, i) {
+													return xScale(i) + spaceBtwn + sidePadding;
+												})
+												.attr("y", function(d) {
+													return h - yScale(d.B);
+												})
+												.attr("width", rectWidth1)
+												.attr("height", function(d) {
+													return yScale(d.B) - botPadding;
+												})
+												.attr("fill", "rgb(207, 117, 43)");
+
+											svg.selectAll("#c rect")
+												.data(dataset)
+												.transition()
+												.duration(1000)
+												.attr("x", function(d, i) {
+													return xScale(i) + spaceBtwn * 2 + sidePadding;
+												})
+												.attr("y", function(d) {
+													return h - yScale(d.C) ;
+												})
+												.attr("width", rectWidth1)
+												.attr("height", function(d) {
+													return yScale(d.C) - botPadding;
+												})
+												.attr("fill", "rgb(120, 119, 119)");
+
+											svg.select("#title")
+												.text("Clustered Column");
+
+
+
+											var formatPercentage = d3.format(".0%");
+
+											yAxis =d3.axisLeft()
+											.scale(yAxisScale)
+											.ticks(10);
+
+											svg.select(".axis")
+												.transition()
+												.duration(1000)
+												.call(yAxis);
+
+											loopdiloop();
+
+											});
+								})
+
+
+						});
+					};
+
+					loopdiloop();
+
+
+
+			})
+
+
+			
+		</script>
+	</body>
+</html>

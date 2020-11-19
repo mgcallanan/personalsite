@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Supreme Court Cases Visualization</title>
+        <script type="text/javascript" src="../d3.js"></script>
+        <style type="text/css">
+            html {
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+            //Width and height
+            var w = 500;
+            var h = 300;
+
+            d3.json("./data/judgesdoc.json", function(data) {
+
+                var dataset = data;
+
+
+                var force = d3.forceSimulation(dataset.nodes)
+                              .force("charge", d3.forceManyBody())
+                              .force("link", d3.forceLink(dataset.edges))
+                              .force("center", d3.forceCenter().x(w/2 - 100).y(h/2 - 60));
+
+                var colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+                var svg = d3.select("body")
+                            .append("svg")
+                            .attr("width", w)
+                            .attr("height", h);
+                
+                var edges = svg.selectAll("line")
+                    .data(dataset.edges)
+                    .enter()
+                    .append("line")
+                    .style("stroke", "#ccc")
+                    .style("stroke-width", 1);
+                
+                var nodes = svg.selectAll("circle")
+                    .data(dataset.nodes)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 10)
+                    .attr("fill", function(d, i) {
+                        if (d.type == "judge") {
+                            if (d.name == "Ginsburg" || d.name == "OConnor")
+                                return "rgb(224, 96, 163)";
+                            else return "black";
+                        }
+                        else {
+                            return "green";
+                        }
+                    })
+                    .attr("stroke-width", "5px")
+                    .attr("stroke-fill", "black");
+
+                //Add a simple tooltip
+                nodes.append("title")
+                     .text(function(d) {
+                        return d.name;
+                     });
+
+                svg.append("text")
+                    .text("SCOTUS Judges Voting Yes on Cases")
+                    .attr("x", w/2)
+                    .attr("y", 15)
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "18px");
+
+                svg.append("text")
+                    .text("The female justices are represented by pink dots.")
+                    .attr("x", 20)
+                    .attr("y", h - 20)
+                    .attr("font-size", "12px");
+
+                svg.append("text")
+                    .text("Hover over the dots to see the judge or case.")
+                    .attr("x", 20)
+                    .attr("y", h - 5)
+                    .attr("font-size", "12px");
+                
+                //Every time the simulation "ticks", this will be called
+                force.on("tick", function() {
+
+                    edges.attr("x1", function(d) { return 1.75 * d.source.x; })
+                         .attr("y1", function(d) { return  1.75 * d.source.y; })
+                         .attr("x2", function(d) { return 1.75 * d.target.x; })
+                         .attr("y2", function(d) { return 1.75 * d.target.y; });
+                
+                    nodes.attr("cx", function(d) { return 1.75 * d.x; })
+                         .attr("cy", function(d) { return 1.75 * d.y; });
+        
+                });
+            })
+
+        </script>
+    </body>
+</html>
