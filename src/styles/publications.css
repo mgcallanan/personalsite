@@ -13,23 +13,16 @@
     background-color: white;
     border-radius: 5px;
 
-    height: 20vh;
-
     margin: 0.5em;
 }
 
 .thumbnail {
-    flex: 1;
-    width: 25%;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .thumbnail img {
-    /*height: 75%; */
-    width: 55%;
     border-radius: 10px;
 }
 
@@ -41,30 +34,88 @@
     flex-direction: column;
 }
 
-h2 {
+.article-name h2 {
     font-family: acumin-pro-condensed, sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: calc(1.5vw + 0.7vh);
 }
 
-p {
+.article-date p {
     color: black;
 }
 
-a:link {
-    color: black;
-    text-decoration: none;
-    transition: color 0.5s;
-}
-
-a:visited {
+.content.publications a:link {
     color: black;
     text-decoration: none;
     transition: color 0.5s;
 }
 
-a:hover {
+.content.publications a:visited {
+    color: black;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.content.publications a:hover {
     color: #9f70b5;
     transition: color 0.5s;
+}
+
+@media only screen and (max-width: 600px) { /* for mobile */
+    .publication-section {
+        height: 30vh;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .thumbnail {
+        height: 60%;
+        width: 100%;
+    }
+
+    .thumbnail img {
+        width: 60%;
+    }
+
+    .article-details {
+        height: 40%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .article-name h2 {
+        
+        font-size: calc(2.2vw + 1vh);
+    }
+
+    .article-date p {
+        font-size: calc(1vw + 0.75vh);
+    }
+}
+
+@media only screen and (min-width: 600px) { /* for desktop */
+    .publication-section {
+        height: 20vh;
+        flex-direction: row;
+    }
+
+    .thumbnail {
+        width: 25%;
+    }
+
+    .thumbnail img {
+        width: 58%;
+    }
+
+    .article-details {
+        width: 75%;
+    }
+
+    .article-name h2 {
+        font-size: calc(1.5vw + 0.7vh);
+    }
+
+    .article-date p {
+        font-size: calc(0.8vw + 0.75vh);
+    }
 }

@@ -18,23 +18,7 @@ export default function Publications() {
       <div className="navigation">
         <Navigation/>
       </div>
-      <div className="content">
-        <p>Publications</p>
-        <a href="https://seas.yale.edu/news-events/news/enas-118-artful-innovations-carry-weight-and-make-surgery-go-easier">
-          <div className="publication-section">
-            <div className="thumbnail">
-              <img src={enasImg}/>
-            </div>
-            <div className="article-details">
-              <div className="article-name">
-                <h2>Artful Innovations that Carry Weight (and Make Surgery Go Easier)</h2>
-              </div>
-              <div className="article-date">
-                <p>January 18, 2019</p>
-              </div>
-            </div>
-          </div>
-        </a>
+      <div className="content publications">
         <a href="https://medium.com/code-haven/fostering-community-in-a-virtual-world-680306bb15">
           <div className="publication-section">
             <div className="thumbnail">
@@ -46,6 +30,21 @@ export default function Publications() {
               </div>
               <div className="article-date">
                 <p>October 3, 2020</p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="https://seas.yale.edu/news-events/news/enas-118-artful-innovations-carry-weight-and-make-surgery-go-easier">
+          <div className="publication-section">
+            <div className="thumbnail">
+              <img src={enasImg}/>
+            </div>
+            <div className="article-details">
+              <div className="article-name">
+                <h2>Artful Innovations that Carry Weight (and Make Surgery Go Easier)</h2>
+              </div>
+              <div className="article-date">
+                <p>January 18, 2019</p>
               </div>
             </div>
           </div>
