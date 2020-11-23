@@ -137,7 +137,7 @@ export default function Resume() {
               <div className="experience-logo">
                 <img src={dshalogo} alt="Divine Savior Holy Angels High School Seal"/>
               </div>
-              <div className="excomperience-main-text">
+              <div className="experience-main-text">
                 <div className="experience-title">
                   <h3 className="dsha">Divine Savior Holy Angels High School</h3>
                 </div>
