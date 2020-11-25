@@ -15,6 +15,20 @@ export default function HTML(props) {
         <link rel="stylesheet" href="https://use.typekit.net/dkh6gwj.css"/>
         <link rel="icon" type="image/png" href={favicon}/>
         {props.headComponents}
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-B5YDNJS4B8"
+        />
+        <script
+            dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-B5YDNJS4B8');
+            `,
+            }}
+        />
       </head>
       <body {...props.bodyAttributes}>
         <div className="overflow_wrapper">
