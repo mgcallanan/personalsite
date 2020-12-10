@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 
 import Header from "../components/header"
 import Navigation from "../components/navigation"
@@ -14,7 +15,7 @@ export default function JustForFun() {
         <Navigation/>
       </div>
       <div className="content">
-        <p>Just for Fun</p>
+        <p>coming soon :)</p>
       </div>
     </React.Fragment>
 
