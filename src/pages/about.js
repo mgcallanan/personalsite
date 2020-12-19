@@ -9,8 +9,8 @@ export default function About() {
   return (
     <div>
       <Helmet>
-            <meta charSet="utf-8" />
-            <title>Home | Mary Callanan</title>
+        <meta charSet="utf-8" />
+        <title>About | Mary Callanan</title>
       </Helmet>
       <React.Fragment>
         <div className="total_header">
