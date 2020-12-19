@@ -107,7 +107,7 @@ h1 {
     }
 
     .header h1 {
-        font-size: calc(calc(7vh + 2vw) * .5);
+        font-size: calc(calc(6.5vh + 2vw) * .5);
         letter-spacing: 0.25em;
         margin: 0px;
     }
