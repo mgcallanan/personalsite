@@ -11,7 +11,7 @@ export default function Header() {
     <React.Fragment>
       <div className="header">
         <Helmet>
-          <title>Mary Callanan</title>
+          {/*<title>Mary Callanan</title>*/}
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         </Helmet>
         <Link to="/">
