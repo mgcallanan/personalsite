@@ -111,11 +111,11 @@ export default function Hamburger() {
                             <p>PUBLICATIONS</p>
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/justforfun/">
                             <p>JUST FOR FUN</p>
-                        </Link>
-                    </li>
+                        </Link> -->
+                    </li> */}
                 </ul>
             </MenuLinks>
         </div>

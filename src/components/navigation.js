@@ -11,7 +11,7 @@ export default function Navigation() {
             <NavigationButton name="RESUME" pageName="/resume"/>
             <NavigationButton name="PORTFOLIO" pageName="/portfolio"/>
             <NavigationButton name="PUBLICATIONS" pageName="/publications"/>
-            <NavigationButton name="JUST FOR FUN" pageName="/justforfun"/>
+            {/*<NavigationButton name="JUST FOR FUN" pageName="/justforfun"/>*/}
         </div>
         <div className="mobile_buttons">
             <Hamburger/>
