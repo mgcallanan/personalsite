@@ -15,7 +15,7 @@ import codehavenlogo from "../images/codehavenlogo.png"
 export default function Resume() {
 
   return (
-    <>
+    <div>
       <Helmet>
         <title>Resume | Mary Callanan</title>
       </Helmet>
@@ -161,7 +161,7 @@ export default function Resume() {
           </div>
         </div>
       </React.Fragment>
-    </>
+    </div>
 
   )
 }

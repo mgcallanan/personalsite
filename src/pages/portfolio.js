@@ -11,9 +11,9 @@ import "../styles/portfolio.css"
 export default function Portfolio() {
 
   return (
-    <>
+    <div>
       <Helmet>
-        <title>Home | Mary Callanan</title>
+        <title>Portfolio | Mary Callanan</title>
       </Helmet>
       <React.Fragment>
         <div className="total_header">
@@ -54,7 +54,7 @@ export default function Portfolio() {
           </div>
         </div>
       </React.Fragment>
-    </>
+    </div>
 
   )
 }
