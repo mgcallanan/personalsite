@@ -28,7 +28,7 @@ export default function Publications() {
           <a href="https://medium.com/code-haven/fostering-community-in-a-virtual-world-680306bb15">
             <div className="publication-section">
               <div className="thumbnail">
-                <img src={chImg}/>
+                <img src={chImg} alt="Group of people at Code Haven social event"/>
               </div>
               <div className="article-details">
                 <div className="article-name">
@@ -43,7 +43,7 @@ export default function Publications() {
           <a href="https://seas.yale.edu/news-events/news/enas-118-artful-innovations-carry-weight-and-make-surgery-go-easier">
             <div className="publication-section">
               <div className="thumbnail">
-                <img src={enasImg}/>
+                <img src={enasImg} alt="Students with their project to measure fading in art"/>
               </div>
               <div className="article-details">
                 <div className="article-name">
