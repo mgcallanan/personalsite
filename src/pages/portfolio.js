@@ -27,11 +27,6 @@ export default function Portfolio() {
             <p className="section-title">&nbsp;Work from CPSC 446: Data Visualization&nbsp;</p>
 
             <div class="slideshow-container">
-              
-              <div className="mySlides film">
-                <iframe title="Gender in Movies" className="d3-sample" src="/genderinmovies.html"></iframe>
-                <div className="caption">A visual representation of the gender divide in Hollywood. The blue in all of the visualizations represents male figures, and the red represents female figures. The data was scraped from <a href="https://github.com/taubergm/HollywoodGenderData">https://github.com/taubergm/HollywoodGenderData</a></div>
-              </div>
 
               <div className="mySlides supreme">
                 <iframe title="Supreme Court Visualization" className="d3-sample" src="/court.html"></iframe>
@@ -46,6 +41,11 @@ export default function Portfolio() {
               <div className="mySlides map">
                 <iframe title="Pay Gap Map" className="d3-sample" src="/genderdata.html"></iframe>
                 <div className="caption">A map depicting the pay gap between males and females in various US states from 2010.</div>
+              </div>
+
+              <div className="mySlides film">
+                <iframe title="Gender in Movies" className="d3-sample" src="/genderinmovies.html"></iframe>
+                <div className="caption">A visual representation of the gender divide in Hollywood. The blue in all of the visualizations represents male figures, and the red represents female figures. The data was scraped from <a href="https://github.com/taubergm/HollywoodGenderData">https://github.com/taubergm/HollywoodGenderData</a></div>
               </div>
 
             </div>
