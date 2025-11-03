@@ -1,3 +1,20 @@
+exports.onCreateWebpackConfig = ({ actions, stage }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        'p5': 'p5/lib/p5.js',
+      },
+    },
+    module: {
+      rules: [
+        {
+          test: /node_modules\/p5\/lib\/p5\.js/,
+          type: 'javascript/auto'
+        }
+      ]
+    }
+  });
+};
 
 
 const express= require('express');

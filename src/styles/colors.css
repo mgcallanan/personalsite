@@ -1,0 +1,38 @@
+:root {
+  /* Pantone 2024 Color of the Year - Peach Fuzz */
+  --peach-fuzz: #ffbe98;
+  --peach-fuzz-light: #ffd4b8;
+  --peach-fuzz-dark: #cc987a;
+
+  /* Complementary Colors */
+  --deep-navy: #1a2b3c;
+  --slate-blue: #2c3e50;
+  --ice-blue: #ecf0f1;
+
+  /* Accent Colors */
+  --soft-coral: #ff7f50;
+  --sage-green: #7c9c8c;
+
+  /* Neutral Colors */
+  --charcoal: #2c3e50;
+  --slate-gray: #5d6d7e;
+  --light-gray: #ecf0f1;
+  --off-white: #f8f9fa;
+
+  /* Gradient Combinations */
+  --gradient-peach: linear-gradient(
+    135deg,
+    var(--peach-fuzz-light),
+    var(--peach-fuzz)
+  );
+  --gradient-dark: linear-gradient(135deg, var(--deep-navy), var(--slate-blue));
+
+  /* Shadows */
+  --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+  /* Opacity Variants */
+  --peach-fuzz-10: rgba(255, 190, 152, 0.1);
+  --peach-fuzz-20: rgba(255, 190, 152, 0.2);
+  --peach-fuzz-50: rgba(255, 190, 152, 0.5);
+}

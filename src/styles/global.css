@@ -1,58 +1,255 @@
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup,
- var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, 
-tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, 
-header, hgroup, menu, nav, section, summary, time, mark, audio, video
- { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
-
-html {
-    background-color: black;
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
-button {
-    padding: 0px;
+@import "./colors.css";
+
+html {
+  background: var(--gradient-dark);
+  min-height: 100vh;
 }
 
 body {
-    margin: 0px 0px;
-    position: relative;
+  margin: 0;
+  position: relative;
+  color: var(--light-gray);
+  font-family: acumin-pro, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h2, p {
-    margin: 0px;
-    padding: 0px;
-}
-
-.overflow_wrapper {
-    position: relative;
-}
-
-@media only screen and (max-width: 600px) { /* for mobile */
-    body {
-        margin: 0px;
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--off-white);
+  margin: 0 0 1rem 0;
 }
 
 p {
-    color: white;
-    font-family: acumin-pro, sans-serif;
-    font-weight: 200;
-    font-style: normal;
+  color: var(--light-gray);
+  font-family: acumin-pro, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
 }
 
-a:link {
-    color: white;
-    text-decoration: underline;
+button {
+  padding: 0.5rem 1rem;
+  background: var(--peach-fuzz);
+  border: none;
+  border-radius: 4px;
+  color: var(--deep-navy);
+  font-family: acumin-pro, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background: var(--peach-fuzz-light);
+  transform: translateY(-1px);
+}
+
+a {
+  color: var(--peach-fuzz);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  position: relative;
 }
 
 a:visited {
-    color: #969696;
-    text-decoration: underline;
+  color: var(--peach-fuzz-dark);
 }
 
 a:hover {
-    color: #9f70b5;
-    transition: color 1s;
+  color: var(--peach-fuzz-light);
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--peach-fuzz);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.overflow_wrapper {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Mobile-first breakpoints */
+:root {
+  --max-width: 1200px;
+  --mobile-padding: 1rem;
+  --desktop-padding: 2rem;
+}
+
+/* Base mobile styles */
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    margin: 0;
+    padding: var(--mobile-padding);
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  body {
+    margin: 0;
+    padding: var(--mobile-padding);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 769px) {
+  body {
+    padding: var(--desktop-padding);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Larger desktop styles */
+@media screen and (min-width: 1200px) {
+  .content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+}
+
+::selection {
+  background: var(--peach-fuzz-20);
+  color: var(--off-white);
 }
 
 /*.content p {
@@ -60,4 +257,3 @@ a:hover {
     left: 50%;
     transition: translate(-50%, -50%);
 }*/
-

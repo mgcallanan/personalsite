@@ -1,151 +1,118 @@
-.content {
+.publications-content {
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1rem 3rem 1rem;
 }
 
-.publication-section {
+.publication-card {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  width: 83vw;
-  background-color: white;
-  border-radius: 5px;
-
-  margin: 0.5em;
+  align-items: center;
+  background: var(--peach-fuzz-10);
+  border: 1px solid var(--peach-fuzz-20);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.5rem 2rem;
+  gap: 2rem;
+  text-decoration: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.7s ease-out forwards;
 }
 
-.thumbnail {
+.publication-card:hover {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-4px);
+  border-color: var(--peach-fuzz-50);
+}
+
+.pub-thumbnail {
+  flex: 0 0 120px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.thumbnail img {
-  border-radius: 7%;
+.pub-thumbnail img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
 }
 
-.article-details {
-  width: 75%;
-
+.pub-details {
+  flex: 1;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
-.article-name h2 {
-  font-family: acumin-pro-condensed, sans-serif;
-  font-weight: 700;
-  font-style: normal;
+.pub-title {
+  color: var(--peach-fuzz);
+  font-family: acumin-pro-wide, sans-serif;
+  font-weight: 600;
+  font-size: calc(1.1vw + 1.1vh);
+  margin: 0 0 0.5rem 0;
 }
 
-.article-date p {
-  color: black;
+.pub-meta {
+  color: var(--light-gray);
+  font-family: acumin-pro, sans-serif;
+  font-size: calc(0.8vw + 0.7vh);
+  opacity: 0.85;
 }
 
-.content.publications a:link {
-  color: black;
-  text-decoration: none;
-  transition: color 0.5s;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.content.publications a:visited {
-  color: black;
-  text-decoration: none;
-  transition: color 0.5s;
+.publication-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.publication-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.publication-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.publication-card:nth-child(4) {
+  animation-delay: 0.8s;
 }
 
-.content.publications a:hover {
-  color: #9f70b5;
-  transition: color 0.5s;
-}
-
-@media only screen and (max-width: 600px) {
-  /* for mobile */
-  .publication-section {
-    height: 25vh;
+@media only screen and (max-width: 768px) {
+  .publications-content {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    gap: 1.2rem;
+  }
+  .publication-card {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
   }
-
-  .thumbnail {
-    height: 65%;
+  .pub-thumbnail {
     width: 100%;
+    justify-content: flex-start;
   }
-
-  .thumbnail img {
-    height: 85%;
+  .pub-thumbnail img {
+    width: 80px;
+    height: 80px;
   }
-
-  .article-details {
-    height: 35%;
-    align-items: center;
-    text-align: center;
+  .pub-title {
+    font-size: calc(1.5vw + 1.2vh);
   }
-
-  .article-name h2 {
-    font-size: calc(2.2vw + 1vh);
-  }
-
-  .article-date p {
-    font-size: calc(1vw + 0.75vh);
-  }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 1440px) {
-  /* for tablets */
-  .publication-section {
-    height: 18vh;
-  }
-
-  .thumbnail {
-    width: 25%;
-  }
-
-  .thumbnail img {
-    height: 80%;
-    max-height: 10vh;
-  }
-
-  .article-details {
-    width: 75%;
-  }
-
-  .article-name h2 {
-    font-size: calc(1.5vw + 0.7vh);
-  }
-
-  .article-date p {
-    font-size: calc(0.8vw + 0.75vh);
-  }
-}
-
-@media only screen and (min-width: 1440px) {
-  /* for desktop */
-  .publication-section {
-    height: 20vh;
-    flex-direction: row;
-  }
-
-  .thumbnail {
-    width: 25%;
-  }
-
-  .thumbnail img {
-    height: 80%;
-    max-height: 18vh;
-  }
-
-  .article-details {
-    width: 75%;
-  }
-
-  .article-name h2 {
-    font-size: calc(1.5vw + 0.7vh);
-  }
-
-  .article-date p {
-    font-size: calc(0.8vw + 0.75vh);
+  .pub-meta {
+    font-size: calc(1vw + 0.9vh);
   }
 }

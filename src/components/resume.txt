@@ -1,0 +1,37 @@
+MARY CALLANAN
+Cambridge, MA • marygcallanan@gmail.com • 414-828-6950 • https://www.linkedin.com/in/mary-callanan-203694172/ • https://www.marygcallanan.com/
+PROFESSIONAL SUMMARY
+Software engineer specializing in cloud infrastructure and observability systems. Experienced in building scalable monitoring tools and full-stack applications across global networks. Combines technical depth in Python, Java, and cloud architecture with a background in creative embedded systems and data visualization.
+
+EXPERIENCE
+Oracle Cloud Infrastructure
+Member of Technical Staff Sept 2025 – Present
+Software Engineer Sept 2023 – Sept 2024
+Build and maintain monitoring systems that provide visibility into Oracle’s global cloud network and edge connectivity to the public internet.
+Lead cross-functional projects to analyze routing and performance using BGP data and automated telemetry pipelines.
+Develop and deploy OCI resources — including compute, networking, serverless, and containerized services — to test, monitor, and improve system reliability.
+Awarded the Networking Unsung Hero award for exceptional collaboration and impact on observability infrastructure.
+Software Engineering Intern May 2020 – Aug 2022
+Built a production-grade visualization tool for BGP route analysis, reducing troubleshooting time by 85%.
+Designed and implemented a monitoring service detecting route anomalies and improving network transparency.
+Selected for the Oracle Developer Scholars Program (\$10,000 award).
+Software Engineering Intern — Bright Cellars Jan 2021 – Apr 2021
+Built APIs and D3.js visualizations to analyze wine performance and inform product strategy.
+
+PROJECTS
+Continuous Line Interpretation of User Drawn Polygons (Senior Thesis) Winter 2022
+Created a browser-based platform to draw and visualize dynamic polygons using React, p5.js, and WebSockets.
+Implemented real-time concave hull generation to explore embodied interaction in computational design.
+Deployed as an installation prototype with modular architecture and projection features.
+Color Preservation Monitor Winter 2019
+Developed a sensor-based system to monitor pigment fading in artworks using real-time color analysis.
+Deployed system within the Yale Art Gallery to support conservation research and presented findings at the Materials and Meaning symposium.
+EDUCATION
+Yale University — B.S. in Computer Science May 2023
+Relevant Coursework: Data Structures, Systems Programming, Databases, Algorithms, Data Visualization, Creative Embedded Systems, Computer Graphics, Linear Algebra.
+Recipient of the Saybrook Head of College Prize for academic and community leadership.
+SKILLS
+Languages: Python, Go, C, Java, SQL, JavaScript (ES6+), TypeScript
+Frameworks: React, Flask, D3.js, Terraform
+Cloud & Tools: OCI, Docker, Kubernetes, Git, Figma, Juniper Network
+Professional: Agile Development, Atlassian Suite (Jira, Confluence, Bitbucket)
