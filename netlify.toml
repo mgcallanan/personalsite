@@ -3,9 +3,9 @@
   publish = "public"
 
 [build.environment]
-  NODE_VERSION = "18"
-  NPM_VERSION = "8"
-  YARN_VERSION = "1.22.22"
+  NODE_VERSION = "18.18.0"
+  NPM_VERSION = "8.19.3"
+  NODE_OPTIONS = "--openssl-legacy-provider"
 
 [[plugins]]
   package = "@netlify/plugin-gatsby"
