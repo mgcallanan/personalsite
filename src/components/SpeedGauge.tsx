@@ -42,7 +42,7 @@ const SpeedGauge: React.FC = () => {
       cups: 0,
       name: "Writing a README",
       tooltip: "Decaf mode",
-      color: "#4A2C2A", // Start with dark coffee
+      color: "#4A2C2A",
       shortName: "Decaf",
     },
     {
@@ -50,7 +50,7 @@ const SpeedGauge: React.FC = () => {
       cups: 1,
       name: "Generating UTs with Cline Code Assist",
       tooltip: "Morning coffee",
-      color: "#6B3D2E", // Lighter coffee
+      color: "#6B3D2E",
       shortName: "Latte",
     },
     {
@@ -58,7 +58,7 @@ const SpeedGauge: React.FC = () => {
       cups: 2,
       name: "Writing Generative Art with P5.js",
       tooltip: "Mid-morning boost",
-      color: "#8B4E31", // Caramel brown
+      color: "#8B4E31",
       shortName: "Drip Coffee",
     },
     {
@@ -66,7 +66,7 @@ const SpeedGauge: React.FC = () => {
       cups: 3,
       name: "Setting up a full Oracle Cloud infrastructure setup",
       tooltip: "Afternoon grind",
-      color: "#AC5F34", // Light caramel
+      color: "#AC5F34",
       shortName: "Cold Brew",
     },
     {
@@ -74,7 +74,7 @@ const SpeedGauge: React.FC = () => {
       cups: 4,
       name: "Setting up an Oracle ADB backend",
       tooltip: "Productivity peak",
-      color: "#CD7037", // Copper
+      color: "#CD7037",
       shortName: "Quad Shot",
     },
     {
@@ -82,16 +82,14 @@ const SpeedGauge: React.FC = () => {
       cups: 5,
       name: "Creating a Full Stack service only using Vim",
       tooltip: "Maximum caffeine",
-      color: "#EE813A", // Bright copper
+      color: "#EE813A",
       shortName: "Red Eye",
     },
   ]
 
   useEffect(() => {
     const updateMetrics = () => {
-      const newCups = Math.round(Math.random() * 5) // Random value between 0-5 cups
-
-      // Find matching activity based on number of cups
+      const newCups = Math.round(Math.random() * 5)
       const currentSpeed = speeds.reduce((prev, curr) =>
         Math.abs(curr.cups - newCups) < Math.abs(prev.cups - newCups)
           ? curr
@@ -100,17 +98,14 @@ const SpeedGauge: React.FC = () => {
 
       setMetrics({
         download: newCups,
-        upload: 0, // Not used in this context
+        upload: 0,
         activity: currentSpeed.name,
         time: `${currentSpeed.cups} cups`,
       })
-      setValue(newCups) // Direct cups value
+      setValue(newCups)
     }
 
-    // Initial update
     updateMetrics()
-
-    // Update every 3-5 seconds
     const interval = setInterval(() => {
       updateMetrics()
     }, 3000 + Math.random() * 2000)
@@ -124,22 +119,23 @@ const SpeedGauge: React.FC = () => {
         width: "100%",
         maxWidth: "800px",
         margin: "0 auto",
-        padding: isMobile ? "12px" : "20px",
+        padding: "clamp(12px, 3vw, 24px)",
         background: "rgba(2, 20, 43, 0.6)",
         borderRadius: "clamp(16px, 3vw, 24px)",
         boxShadow: "0 4px 24px rgba(10, 26, 42, 0.2)",
         backdropFilter: "blur(10px)",
-        overflow: "hidden",
         boxSizing: "border-box",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
-      {/* Speed Metrics Display */}
       <div
         style={{
           display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          alignItems: isMobile ? "flex-start" : "center",
-          gap: isMobile ? "8px" : "0",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "8px",
           justifyContent: "space-between",
           color: "#fff",
           fontFamily: "acumin-pro-condensed, sans-serif",
@@ -149,6 +145,8 @@ const SpeedGauge: React.FC = () => {
           borderRadius: "clamp(8px, 2vw, 12px)",
           backdropFilter: "blur(4px)",
           fontSize: "clamp(14px, 2.5vw, 16px)",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <span>Coffee Flow Rate to Dev Activity</span>
@@ -157,7 +155,7 @@ const SpeedGauge: React.FC = () => {
             whiteSpace: "nowrap",
             overflow: "hidden",
             textOverflow: "ellipsis",
-            maxWidth: isMobile ? "100%" : "50%",
+            width: "100%",
           }}
         >
           Activity: {metrics.activity}
@@ -167,65 +165,75 @@ const SpeedGauge: React.FC = () => {
       <div
         style={{
           width: "100%",
-          minHeight: isMobile ? "200px" : "300px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          overflow: "hidden",
-          padding: "0 10px",
+          padding: "0",
+          boxSizing: "border-box",
         }}
       >
-        <GaugeComponent
-          id="gauge-component"
+        <div
           style={{
-            width: isMobile ? "100%" : "600px",
-            maxWidth: isMobile ? "300px" : "600px",
-            height: "auto",
+            width: "100%",
+            maxWidth: "600px",
+            aspectRatio: "2/1",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "0 20px",
           }}
-          type="semicircle"
-          arc={{
-            colorArray: speeds.map(s => s.color),
-            width: isMobile ? 0.25 : 0.2,
-            padding: isMobile ? 0.03 : 0.02,
-            subArcs: speeds.slice(1).map((speed, i) => ({
-              limit: speed.cups * 20,
-              color: speed.color,
-            })),
-          }}
-          pointer={{
-            elastic: true,
-            animationDelay: 0,
-            length: isMobile ? 0.7 : 0.8,
-            width: isMobile ? 8 : 10,
-          }}
-          value={value * 20} // Map 0-5 cups to 0-100 scale
-          minValue={0}
-          maxValue={100}
-          labels={{
-            valueLabel: {
-              formatTextValue: value => "☕".repeat(Math.round(value / 20)),
-              style: {
-                fill: "#fff",
-                fontSize: isMobile ? "20px" : "28px",
-                fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif", // Better emoji support
-              },
-            },
-            tickLabels: {
-              type: "outer",
-              ticks: speeds.map(speed => ({
-                value: speed.cups * 20,
-                label: speed.shortName,
+        >
+          <GaugeComponent
+            id="gauge-component"
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "block",
+            }}
+            type="semicircle"
+            arc={{
+              colorArray: speeds.map(s => s.color),
+              width: 0.2,
+              padding: 0.02,
+              subArcs: speeds.slice(1).map((speed, i) => ({
+                limit: speed.cups * 20,
+                color: speed.color,
               })),
-              defaultTickValueConfig: {
-                formatTextValue: value => {
-                  const speed = speeds.find(s => s.cups * 20 === value)
-                  console.log(speed)
-                  return speed ? speed.shortName : ""
+            }}
+            pointer={{
+              elastic: true,
+              animationDelay: 0,
+              length: 0.8,
+              width: 8,
+            }}
+            value={value * 20}
+            minValue={0}
+            maxValue={100}
+            labels={{
+              valueLabel: {
+                formatTextValue: value => "☕".repeat(Math.round(value / 20)),
+                style: {
+                  fill: "#fff",
+                  fontSize: isMobile ? "20px" : "28px",
+                  fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
                 },
               },
-            },
-          }}
-        />
+              tickLabels: {
+                type: "outer",
+                ticks: speeds.map(speed => ({
+                  value: speed.cups * 20,
+                  label: speed.shortName,
+                })),
+                defaultTickValueConfig: {
+                  formatTextValue: value => {
+                    const speed = speeds.find(s => s.cups * 20 === value)
+                    return speed ? speed.shortName : ""
+                  },
+                },
+              },
+            }}
+          />
+        </div>
       </div>
     </div>
   )

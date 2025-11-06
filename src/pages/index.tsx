@@ -140,7 +140,13 @@ const Home: React.FC = () => (
     </div>
     <div
       className="network-viz-section"
-      style={{ marginBottom: "100px", padding: "40px 0" }}
+      style={{
+        marginBottom: "100px",
+        padding: "40px 0",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
     >
       <div className="network-viz-intro">
         <h2>Network Status: Online</h2>
@@ -152,8 +158,11 @@ const Home: React.FC = () => (
       </div>
       <div
         style={{
-          position: "relative",
           margin: "20px auto",
+          width: "100%",
+          flex: "1 1 100%",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <SpeedGauge />
